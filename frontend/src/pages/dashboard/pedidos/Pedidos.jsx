@@ -1,4 +1,5 @@
 import "./Pedidos.css";
+import { useState } from "react";
 import {
   Package,
   ShoppingCart,
@@ -9,6 +10,8 @@ import {
   House,
   Hamburger,
   Clock,
+  Menu,
+  X
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useCartCount } from "../../../components/hooks/useCartCount";
@@ -18,18 +21,30 @@ const Pedidos = () => {
   const navigate = useNavigate();
   const cartCount = useCartCount();
   const { pedidos, totalGastado } = usePedidosLogic();
+
+    const [menuOpen, setMenuOpen] = useState(false);
+  
   return (
     <div className="pedidos-container">
       <header className="navbar">
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
-        <nav className="nav">
+
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menú"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
           <a href="/inicio">
             <House />
             Inicio
           </a>
-          <a href="/catalogo">
+          <a href="/catalogo" className="active">
             <Hamburger />
             Catálogo
           </a>
@@ -38,15 +53,15 @@ const Pedidos = () => {
             Carrito{" "}
             {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
           </a>
-          <a href="/pedidos" className="active">
+          <a href="/pedidos">
             <Package />
             Mis pedidos
           </a>
+          <a href="/cuenta">
+            <User />
+            Hola, Usuario
+          </a>
         </nav>
-        <div className="user-info">
-          <User size={20} />
-          <a href="/cuenta">Hola, Usuario</a>
-        </div>
       </header>
 
       <section className="pedidos-hero">

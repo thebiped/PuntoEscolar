@@ -17,6 +17,7 @@ import {
   Backpack,
   House,
   Hamburger,
+    Menu,
 } from "lucide-react";
 import { useCatalogLogic } from "../../../components/dashboard/catalogo/useCatalogLogic";
 import { useCartCount } from "../../../components/hooks/useCartCount";
@@ -79,6 +80,7 @@ const Catalogo = () => {
   ? allProducts.filter((p) => p.id === productoId)
   : null;
 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="catalog-container">
@@ -87,8 +89,17 @@ const Catalogo = () => {
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
-        <nav className="nav">
-          <a href="/inicio">
+
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menú"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
+          <a href="/inicio" >
             <House />
             Inicio
           </a>
@@ -105,12 +116,13 @@ const Catalogo = () => {
             <Package />
             Mis pedidos
           </a>
+          <a href="/cuenta">
+            <User />
+            Hola, Usuario
+          </a>
         </nav>
-        <div className="user-info">
-          <User size={20} />
-          <a href="/cuenta">Hola, Usuario</a>
-        </div>
       </header>
+
       <div className="catalog-header">
         <div className="catalog-header-content">
           <div className="catalog-header-icon">

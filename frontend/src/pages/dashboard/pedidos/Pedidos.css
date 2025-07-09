@@ -64,7 +64,7 @@ body {
   margin: 0 2rem;
   padding: 4rem;
   color: #fff;
-  background: linear-gradient(to right, #1949CE 0%, #2F66FF 50%, #4A90E2 100%);
+  background: linear-gradient(to right, #1949ce 0%, #2f66ff 50%, #4a90e2 100%);
   border-radius: 12px;
 }
 
@@ -154,7 +154,7 @@ body {
   background: #ef4444;
 }
 
-.historial{
+.historial {
   margin: 2rem 4rem;
 }
 
@@ -206,7 +206,6 @@ body {
   background-color: #3e8e41;
 }
 
-
 .pedido-box {
   margin-bottom: 30px;
   padding: 20px;
@@ -223,13 +222,13 @@ body {
   margin-bottom: 10px;
 }
 
-.pedido-header-icon{
+.pedido-header-icon {
   display: flex;
   align-items: center;
   background: rgba(47, 102, 255, 0.25);
   padding: 1rem;
   border-radius: 50%;
-  color: #2F66FF;
+  color: #2f66ff;
   font-size: 1.5rem;
 }
 
@@ -256,7 +255,7 @@ body {
 .pedido-total span {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #2F66FF;
+  color: #2f66ff;
 }
 
 .pedido-info {
@@ -291,7 +290,7 @@ body {
   align-items: center;
   gap: 0.6rem;
   padding: 1rem;
-  background: #F7F9FC;
+  background: #f7f9fc;
   border-radius: 8px;
   border: 1px solid #eee;
 }
@@ -302,16 +301,16 @@ body {
   align-items: center;
   padding: 0.6rem;
   margin: 0.5rem;
-  background: #FFF8CC;
+  background: #fff8cc;
   border-radius: 8px;
-} 
+}
 .item-box img {
   width: 50px;
   height: 50px;
   object-fit: contain;
 }
 
-.item-box-content{
+.item-box-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -344,7 +343,7 @@ body {
 }
 
 .precio-info .unit {
-  color: #2F66FF;
+  color: #2f66ff;
   font-size: 0.8rem;
   font-weight: bold;
 }
@@ -439,4 +438,229 @@ body {
   font-size: 0.85rem;
   border-top: 1px solid #334155;
   padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 1rem 5%;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    font-size: 1rem;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .logo {
+    width: 100px;
+  }
+  .pedidos-hero {
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .pedidos-hero-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .pedidos-hero-header h1 {
+    font-size: 2rem;
+  }
+
+  .pedidos-hero-header .icono {
+    padding: 1rem 1.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-catalogo,
+  .btn-cart {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .estadisticas {
+    margin: 2rem 1rem;
+  }
+
+  .estadisticas-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .estadisticas .card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .historial {
+    margin: 2rem 1rem;
+  }
+
+  .pedido-box {
+    padding: 1rem;
+  }
+
+  .pedido-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pedido-total {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pedido-items {
+    padding: 0.5rem;
+  }
+
+  .item-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .item-box-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .precio-info {
+    align-items: flex-start;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .pedidos-hero {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .pedidos-hero-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .btn-catalogo,
+  .btn-cart {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .estadisticas h3 {
+    font-size: 1.2rem;
+  }
+
+  .estadisticas .card {
+    padding: 0.8rem;
+  }
+
+  .historial-header h2 {
+    font-size: 1rem;
+  }
+
+  .pedido-header-icon {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  .pedido-total h3,
+  .pedido-total span {
+    font-size: 1rem;
+  }
+
+  .pedido-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-box {
+    padding: 0.8rem;
+  }
+
+  .item-box-content {
+    padding: 0.5rem;
+  }
+
+  .item-info h4 {
+    font-size: 0.95rem;
+  }
+
+  .item-info p,
+  .item-info .cantidad {
+    font-size: 0.8rem;
+  }
+
+  .precio-info .subtotal {
+    font-size: 1rem;
+  }
+
+  .precio-info .unit {
+    font-size: 0.75rem;
+  }
+
+  .btn-ir-catalogo {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    padding: 30px 5% 15px;
+  }
+
+  .footer-column h4 {
+    font-size: 1.2rem;
+  }
+
+  .footer-logo {
+    font-size: 1.2rem;
+  }
+
+  .footer-links a,
+  .contact-link {
+    font-size: 0.85rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
 }

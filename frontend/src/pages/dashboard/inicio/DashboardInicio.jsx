@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import {
   ShoppingCart,
   User,
@@ -15,12 +16,16 @@ import {
   CupSoda,
   Popcorn,
   Plus,
+  Menu,
+  X,
 } from "lucide-react";
 import "./DashboardInicio.css";
 import { useCartCount } from "../../../components/hooks/useCartCount";
 import { catalogProducts } from "../../../components/CatalogData";
 
 const DashboardInicio = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const navigate = useNavigate();
   const cartCount = useCartCount();
 
@@ -51,7 +56,16 @@ const DashboardInicio = () => {
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
-        <nav className="nav">
+
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menú"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
           <a href="/inicio" className="active">
             <House />
             Inicio
@@ -69,11 +83,11 @@ const DashboardInicio = () => {
             <Package />
             Mis pedidos
           </a>
+          <a href="/cuenta">
+            <User />
+            Hola, Usuario
+          </a>
         </nav>
-        <div className="user-info">
-          <User size={20} />
-          <a href="/cuenta">Hola, Usuario</a>
-        </div>
       </header>
 
       {/* Hero */}

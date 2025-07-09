@@ -142,10 +142,21 @@ body {
   text-decoration: none;
 }
 
-/* ====== RESPONSIVE ====== */
+@media (max-width: 1024px) {
+  .register-container {
+    padding: 1rem 2rem;
+  }
+
+  .register-form-section {
+    padding: 2rem;
+  }
+}
+
 @media (max-width: 768px) {
   .register-container {
     flex-direction: column;
+    padding: 1rem;
+    height: auto;
   }
 
   .register-form-section,
@@ -154,7 +165,82 @@ body {
     border-radius: 0;
   }
 
+  .register-form-section {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 2rem 1.5rem;
+    box-shadow: none;
+    border: none;
+  }
+
+  .register-image-section {
+    height: 250px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
   .register-image-section img {
-    border-radius: 0;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .register-btn {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+
+  .login-link {
+    font-size: 0.8rem;
   }
 }
+
+@media (max-width: 480px) {
+  .register-form-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .input-container label {
+    font-size: 0.85rem;
+  }
+
+  .input-content-register {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .input-content-register input {
+    font-size: 0.85rem;
+  }
+
+  .terms-checkbox {
+    font-size: 0.75rem;
+    gap: 6px;
+  }
+
+  .register-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+
+  .login-link {
+    font-size: 0.75rem;
+    margin-top: 16px;
+  }
+}
+

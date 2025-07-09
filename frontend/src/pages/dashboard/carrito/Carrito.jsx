@@ -17,6 +17,8 @@ import {
   Home,
   Clock,
   Gift,
+  Menu,
+  X,
 } from "lucide-react";
 import { useCartCount } from "../../../components/hooks/useCartCount"; // ajustar ruta
 import { useCarritoLogic } from "../../../components/dashboard/carrito/useCarritoLogic";
@@ -38,6 +40,7 @@ const Carrito = () => {
   } = useCarritoLogic();
 
   const cartCount = useCartCount();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className="cart-page">
@@ -45,16 +48,25 @@ const Carrito = () => {
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
-        <nav className="nav">
+
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Abrir menú"
+        >
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        <nav className={`nav ${menuOpen ? "open" : ""}`}>
           <a href="/inicio">
             <House />
             Inicio
           </a>
-          <a href="/catalogo">
+          <a href="/catalogo" className="active">
             <Hamburger />
             Catálogo
           </a>
-          <a href="/carrito" className="active">
+          <a href="/carrito">
             <ShoppingCart />
             Carrito{" "}
             {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
@@ -63,11 +75,11 @@ const Carrito = () => {
             <Package />
             Mis pedidos
           </a>
+          <a href="/cuenta">
+            <User />
+            Hola, Usuario
+          </a>
         </nav>
-        <div className="user-info">
-          <User size={20} />
-          <a href="/cuenta">Hola, Usuario</a>
-        </div>
       </header>
       {/* HERO */}
       <section className="cart-hero">

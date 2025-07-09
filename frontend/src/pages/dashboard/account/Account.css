@@ -1,33 +1,32 @@
-/* src/pages/dashboard/account/Account.css */
 
 .account-page {
-  padding: 40px 20px;
   max-width: 960px;
   margin: auto;
+  padding: 40px 20px;
   font-family: "Segoe UI", sans-serif;
 }
 
 /* HERO */
 .account-hero {
-  background: linear-gradient(to right, #f87171, #f43f5e);
-  color: white;
-  border-radius: 12px;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(to right, #f87171, #f43f5e);
+  border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .account-hero .icon {
-  background: white;
-  color: #ef4444;
-  border-radius: 10px;
   width: 56px;
   height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #ef4444;
+  background: white;
+  border-radius: 10px;
 }
 
 .account-hero h1 {
@@ -47,28 +46,28 @@
 }
 
 .btn-primary {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 10px 14px;
-  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 10px 14px;
   font-weight: 500;
+  color: white;
+  background-color: #3b82f6;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .btn-outline {
-  background: white;
-  color: #ef4444;
-  border: 2px solid white;
-  padding: 10px 14px;
-  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 10px 14px;
   font-weight: 500;
+  color: #ef4444;
+  background: white;
+  border: 2px solid white;
+  border-radius: 6px;
   cursor: pointer;
 }
 
@@ -77,12 +76,12 @@
   align-items: center;
   gap: 6px;
   margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #3b82f6;
   background: none;
   border: none;
-  color: #3b82f6;
-  font-weight: 500;
   cursor: pointer;
-  font-size: 0.95rem;
 }
 
 .edit-controls {
@@ -91,19 +90,19 @@
 }
 
 .save-button {
-  background-color: #10b981;
-  color: white;
-  border: none;
   padding: 6px 14px;
+  color: white;
+  background-color: #10b981;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .cancel-button {
-  background-color: #e5e7eb;
-  color: #374151;
-  border: none;
   padding: 6px 14px;
+  color: #374151;
+  background-color: #e5e7eb;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
 }
@@ -111,9 +110,9 @@
 /* CARD DE INFORMACIÓN */
 .account-info-card {
   margin-top: 30px;
+  padding: 24px;
   background: white;
   border-radius: 12px;
-  padding: 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -130,13 +129,13 @@
 }
 
 .edit-button {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
   padding: 6px 12px;
+  color: white;
+  font-size: 0.9rem;
+  background-color: #3b82f6;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
 }
 
 .info-field {
@@ -147,33 +146,33 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  margin-bottom: 4px;
   font-size: 0.95rem;
   color: #374151;
-  margin-bottom: 4px;
 }
 
 .info-field input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background: #f9fafb;
   font-size: 0.95rem;
   color: #111827;
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
 }
 
 /* ACCIONES */
 .account-actions {
   margin-top: 30px;
+  padding: 20px 24px;
   background: #fff;
   border-radius: 12px;
-  padding: 20px 24px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
 }
 
 .account-actions h2 {
-  font-size: 1.2rem;
   margin-bottom: 14px;
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
@@ -227,32 +226,32 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: 1000;
 }
 
 .modal-content {
-  background: white;
-  padding: 24px 28px;
-  border-radius: 12px;
-  text-align: center;
   width: 90%;
   max-width: 400px;
+  padding: 24px 28px;
+  background: white;
+  border-radius: 12px;
+  text-align: center;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
   animation: fadeIn 0.2s ease-out;
 }
 
 .modal-content h3 {
-  font-size: 1.3rem;
   margin-bottom: 10px;
+  font-size: 1.3rem;
 }
 
 .modal-content p {
-  font-size: 0.95rem;
   margin-bottom: 20px;
+  font-size: 0.95rem;
   color: #4b5563;
 }
 
@@ -263,22 +262,22 @@
 }
 
 .confirm-btn {
-  background-color: #10b981;
-  color: white;
-  border: none;
   padding: 10px 18px;
-  border-radius: 6px;
   font-weight: 500;
+  color: white;
+  background-color: #10b981;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
 }
 
 .cancel-btn {
+  padding: 10px 18px;
   background-color: #f3f4f6;
+  font-weight: 500;
   color: #374151;
   border: none;
-  padding: 10px 18px;
   border-radius: 6px;
-  font-weight: 500;
   cursor: pointer;
 }
 
@@ -290,5 +289,155 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .account-page {
+    padding: 30px 16px;
+  }
+
+  .account-hero {
+    padding: 20px;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .account-hero .icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .account-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .back-button {
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  .edit-controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .edit-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .info-field input {
+    padding: 0.8rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .logout-button,
+  .delete-button {
+    width: 100%;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-page {
+    padding: 20px 12px;
+  }
+
+  .account-hero {
+    padding: 16px;
+  }
+
+  .account-hero h1 {
+    font-size: 1.25rem;
+  }
+
+  .account-hero p {
+    font-size: 0.9rem;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .save-button,
+  .cancel-button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .card-header h2,
+  .account-actions h2 {
+    font-size: 1rem;
+  }
+
+  .edit-button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .info-field label {
+    font-size: 0.85rem;
+  }
+
+  .info-field input {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+
+  .logout-button,
+  .delete-button {
+    gap: 12px;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .logout-button span,
+  .delete-button span {
+    font-size: 0.75rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal-content p {
+    font-size: 0.9rem;
   }
 }
