@@ -85,7 +85,7 @@ body {
   color: #333;
 }
 
-.input-icon {
+.input-content-login {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -95,7 +95,7 @@ body {
   border-radius: 8px;
 }
 
-.input-icon input {
+.input-content-login input {
   flex: 1;
   border: none;
   outline: none;

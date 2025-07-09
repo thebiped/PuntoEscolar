@@ -11,65 +11,13 @@ import {
   Clock,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
-const pedidos = [
-  {
-    id: "ORD-001",
-    direccion: "Av. Principal 123",
-    total: 6.75,
-    productos: 3,
-    items: [
-      {
-        nombre: "Bebidas",
-        cantidad: 2,
-        precio: 2.5,
-        subtotal: 5.0,
-        categoria: "Bebidas",
-        imagen: "../../../../public/assets/products/product-cola.png",
-      },
-      {
-        nombre: "Maná Rellenas de Limón",
-        cantidad: 1,
-        precio: 1.75,
-        subtotal: 1.75,
-        categoria: "Snacks",
-        imagen: "../../../../public/assets/products/product-mana.png",
-      },
-    ],
-  },
-  {
-    id: "ORD-002",
-    direccion: "E.E.S.T N°1",
-    total: 12.5,
-    productos: 4,
-    items: [
-      {
-        nombre: "Cuaderno A4",
-        cantidad: 3,
-        precio: 3.25,
-        subtotal: 9.75,
-        categoria: "Útiles",
-        imagen: "../../../../public/assets/products/product-hojas.png",
-      },
-      {
-        nombre: "Bolígrafos Pack x3",
-        cantidad: 1,
-        precio: 2.75,
-        subtotal: 2.75,
-        categoria: "Útiles",
-        imagen: "../../../../public/assets/products/product-boligrafos.png",
-      },
-    ],
-  },
-];
+import { useCartCount } from "../../../components/hooks/useCartCount";
+import { usePedidosLogic } from "../../../components/dashboard/pedido/usePedidosLogic";
 
 const Pedidos = () => {
-  const totalGastado = pedidos.reduce((sum, p) => sum + p.total, 0);
-  const handleLogout = () => {
-    localStorage.removeItem("auth");
-    alert("Sesión cerrada exitosamente");
-    navigate("/");
-  };
+  const navigate = useNavigate();
+  const cartCount = useCartCount();
+  const { pedidos, totalGastado } = usePedidosLogic();
   return (
     <div className="pedidos-container">
       <header className="navbar">
@@ -87,7 +35,8 @@ const Pedidos = () => {
           </a>
           <a href="/carrito">
             <ShoppingCart />
-            Carrito
+            Carrito{" "}
+            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
           </a>
           <a href="/pedidos" className="active">
             <Package />
@@ -142,58 +91,83 @@ const Pedidos = () => {
       <section className="historial">
         <div className="historial-header">
           <h2>Historial de Pedidos</h2>
-          <span className="sub"><Clock />Mostrando {pedidos.length} pedidos</span>
+          <span className="sub">
+            <Clock />
+            Mostrando {pedidos.length} pedidos
+          </span>
         </div>
-        {pedidos.map((p) => (
-          <div className="pedido-box" key={p.id}>
-            <div className="pedido-header">
-              <div className="pedido-header-icon">
-                <Package size={20} />
-              </div>
-
-              <div className="pedido-header-container">
-                <div className="pedido-total">
-                  <h3>Pedido #{p.id}</h3>
-                  <span>${p.total.toFixed(2)}</span>
-                </div>
-                <div className="pedido-info">
-                  <span className="pedido-info-icon">
-                    <MapPin size={14} /> Dirección de entrega: {p.direccion}
-                  </span>
-                  <span className="productos-count">
-                    {p.productos} productos
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="pedido-items">
-              {p.items.map((item, index) => (
-                <div className="item-box" key={index}>
-                  <div className="item-box-icon">
-                    <img src={item.imagen} alt={item.nombre} />
-                  </div>
-                  <div className="item-box-content">
-                    <div className="item-info">
-                      <h4>{item.nombre}</h4>
-                      <p>{item.categoria}</p>
-                      <span className="cantidad">
-                        Cantidad: {item.cantidad}
-                      </span>
-                    </div>
-                    <div className="precio-info">
-                      <span className="unit">
-                        ${item.precio.toFixed(2)} c/u
-                      </span>
-                      <span className="subtotal">
-                        ${item.subtotal.toFixed(2)}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {pedidos.length === 0 ? (
+          <div className="no-pedidos">
+            <img
+              src="/assets/empty-orders.png"
+              alt="Sin pedidos"
+              className="no-pedidos-img"
+            />
+            <h3>¡Aún no realizaste ningún pedido!</h3>
+            <p>
+              Explorá el catálogo y agregá productos para hacer tu primer
+              pedido.
+            </p>
+            <a href="/catalogo" className="btn-ir-catalogo">
+              Ir al Catálogo
+            </a>
           </div>
-        ))}
+        ) : (
+          pedidos.map((p) => (
+            <div className="pedido-box" key={p.id}>
+              <div className="pedido-header">
+                <div className="pedido-header-icon">
+                  <Package size={20} />
+                </div>
+
+                <div className="pedido-header-container">
+                  <div className="pedido-total">
+                    <h3>Pedido #{p.id}</h3>
+                    <span>${p.total.toFixed(2)}</span>
+                  </div>
+                  <div className="pedido-info">
+                    <span className="pedido-info-icon">
+                      <MapPin size={14} /> Dirección de entrega: {p.direccion}
+                    </span>
+                    <span className="productos-count">
+                      {p.productos} productos
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="pedido-items">
+                {p.items.map((item, index) => (
+                  <div className="item-box" key={index}>
+                    <div className="item-box-icon">
+                      <img src={item.imagen} alt={item.nombre} />
+                    </div>
+                    <div className="item-box-content">
+                      <div className="item-info">
+                        <h4>{item.nombre}</h4>
+                        <p>{item.categoria}</p>
+                        <span className="cantidad">
+                          Cantidad: {item.cantidad}
+                        </span>
+                      </div>
+                      <div className="precio-info">
+                        <span className="unit">
+                          ${Number(item?.precio || 0).toFixed(2)} c/u
+                        </span>
+                        <span className="subtotal">
+                          $
+                          {Number(
+                            item?.subtotal ??
+                              (item?.precio || 0) * (item?.cantidad || 0)
+                          ).toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))
+        )}
       </section>
       {/* Footer */}
       <footer className="footer">

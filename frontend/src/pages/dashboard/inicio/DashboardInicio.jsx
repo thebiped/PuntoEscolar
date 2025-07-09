@@ -17,9 +17,12 @@ import {
   Plus,
 } from "lucide-react";
 import "./DashboardInicio.css";
+import { useCartCount } from "../../../components/hooks/useCartCount";
+import { catalogProducts } from "../../../components/CatalogData";
 
 const DashboardInicio = () => {
   const navigate = useNavigate();
+  const cartCount = useCartCount();
 
   const handleLogout = () => {
     localStorage.removeItem("auth");
@@ -27,11 +30,27 @@ const DashboardInicio = () => {
     navigate("/");
   };
 
+  const products = catalogProducts.slice(0, 4);
+
+  const handleAddToCart = (product) => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existing = cart.find((p) => p.id === product.id);
+    if (existing) {
+      existing.quantity++;
+    } else {
+      cart.push({ id: product.id, quantity: 1 });
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    window.location.reload(); // actualiza contador de carrito
+  };
+
   return (
     <div className="dashboard">
       {/* Navbar */}
       <header className="navbar">
-        <div className="logo"><img src="/assets/logo.png" alt="" /></div>
+        <div className="logo">
+          <img src="/assets/logo.png" alt="" />
+        </div>
         <nav className="nav">
           <a href="/inicio" className="active">
             <House />
@@ -43,7 +62,8 @@ const DashboardInicio = () => {
           </a>
           <a href="/carrito">
             <ShoppingCart />
-            Carrito
+            Carrito{" "}
+            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
           </a>
           <a href="/pedidos">
             <Package />
@@ -64,7 +84,7 @@ const DashboardInicio = () => {
             Bienvenido a tu tienda escolar favorita. Encontrá todo lo que
             necesitás para el colegio con entrega rápida y segura.
           </p>
-          <button className="btn-hero">
+          <button className="btn-hero" onClick={() => navigate("/catalogo")}>
             Ver catálogo
             <MoveRight size={16} />
           </button>
@@ -79,7 +99,7 @@ const DashboardInicio = () => {
             <Popcorn size={78} color="#FF945E" />
             <h3>Snacks</h3>
             <p>Chocolates, papas y golosinas para tus recreos.</p>
-            <a href="#">
+            <a href={`/catalogo?categoria=Snacks`}>
               Explorar <Rocket />
             </a>
           </div>
@@ -87,7 +107,7 @@ const DashboardInicio = () => {
             <CupSoda size={78} color="#2F66FF" />
             <h3>Bebidas</h3>
             <p>Gaseosas y jugos para acompañar tus comidas.</p>
-            <a href="#">
+            <a href={`/catalogo?categoria=Bebidas`}>
               Explorar <Rocket />
             </a>
           </div>
@@ -95,7 +115,7 @@ const DashboardInicio = () => {
             <Backpack size={78} color="#4AE24D" />
             <h3>Útiles</h3>
             <p>Todo lo necesario para tu día a día en clase.</p>
-            <a href="#">
+            <a href={`/catalogo?categoria=Útiles`}>
               Explorar <Rocket />
             </a>
           </div>
@@ -103,7 +123,7 @@ const DashboardInicio = () => {
             <Package size={78} color="#FF2F6D" />
             <h3>Otros</h3>
             <p>Mirá todo lo que tenemos para vos en un solo lugar.</p>
-            <a href="#">
+            <a href={`/catalogo?categoria=Otros`}>
               Explorar <Rocket />
             </a>
           </div>
@@ -115,93 +135,24 @@ const DashboardInicio = () => {
         <h2>Productos Destacados</h2>
         <p>Los más populares entre nuestros estudiantes</p>
         <div className="product-container">
-          {/* Cards individuales (pueden venir de props o JSON más adelante) */}
-          <div className="product-card">
-            <div className="icon">
-              <img
-                src="../../../../public/assets/products/product-cola.png"
-                alt="Coca Cola"
-              />
-            </div>
-
-            <div className="product-card-body">
-              <span className="category-tag">Bebidas</span>
-              <h3 className="product-name">Coca Cola 500ml</h3>
-              <p className="product-description line-clamp-2">
-                Refresco de cola, botella de 500ml
-              </p>
-              <div className="product-card-footer">
-                <span className="product-price">$2.50</span>
-                <button className="add-button ">
-                  <Plus size={20} />
-                </button>
+          {products.map((product) => (
+            <div
+              className="product-card hoverable"
+              onClick={() => navigate(`/catalogo?producto=${product.id}`)}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="icon">
+                <img src={product.image} alt={product.name} />
+              </div>
+              <div className="product-card-body">
+                <span className="category-tag">{product.category}</span>
+                <h3 className="product-name">{product.name}</h3>
+                <p className="product-description line-clamp-2">
+                  {product.description}
+                </p>
               </div>
             </div>
-          </div>
-          <div className="product-card">
-            <div className="icon">
-              <img
-                src="../../../../public/assets/products/product-papa_fritas.png"
-                alt="Lays"
-              />
-            </div>
-            <div className="product-card-body">
-              <span className="category-tag">Snacks</span>
-              <h3 className="product-name">Papas Lays classic</h3>
-              <p className="product-description line-clamp-2">
-                crujientes, con un sabor a papa fresco y un toque de sal
-              </p>
-              <div className="product-card-footer">
-                <span className="product-price">$2.50</span>
-                <button className="add-button ">
-                  <Plus size={20} />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="product-card">
-            <div className="icon">
-              <img
-                src="../../../../public/assets/products/product-chocolate-tita.png"
-                alt="Tita"
-              />
-            </div>
-            <div className="product-card-body">
-              <span className="category-tag"></span>
-              <h3 className="product-name">Chocolate Tita</h3>
-              <p className="product-description line-clamp-2">
-                es una oblea con relleno cremoso y cobertura de chocolate
-              </p>
-              <div className="product-card-footer">
-                <span className="product-price">$2.50</span>
-                <button className="add-button ">
-                  <Plus size={20} />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="product-card">
-            <div className="icon">
-              <img
-                src="../../../../public/assets/products/product-saladix.png"
-                alt="Saladix"
-              />
-            </div>
-            <div className="product-card-body">
-              <span className="category-tag">Snacks</span>
-              <h3 className="product-name">Saladix jamon y queso</h3>
-              <p className="product-description line-clamp-2">
-                Saladix  sabor a jamón y queso, conocido por su textura
-                crujiente y ligero.
-              </p>
-              <div className="product-card-footer">
-                <span className="product-price">$2.50</span>
-                <button className="add-button ">
-                  <Plus size={20} />
-                </button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -247,7 +198,6 @@ const DashboardInicio = () => {
             </div>
           </div>
         </div>
-
         <div className="footer-bottom">
           © 2025 Mi Kiosco Escolar. Todos los derechos reservados.
         </div>

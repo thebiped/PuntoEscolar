@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback, useEffect } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
 import {
   Search,
   Plus,
@@ -17,204 +18,93 @@ import {
   House,
   Hamburger,
 } from "lucide-react";
-import { catalogProducts } from "../../../components/CatalogData";
+import { useCatalogLogic } from "../../../components/dashboard/catalogo/useCatalogLogic";
+import { useCartCount } from "../../../components/hooks/useCartCount";
 import "./Catalogo.css";
 
 const Catalogo = () => {
-  const categories = [
-    { id: "todos", name: "Todos", icon: Package },
-    { id: "snacks", name: "Snacks", icon: Popcorn },
-    { id: "bebidas", name: "Bebidas", icon: CupSoda },
-    { id: "utiles", name: "Útiles", icon: Backpack },
-  ];
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("todos");
-  const [showAllPopular, setShowAllPopular] = useState(false);
-  const [showAllNew, setShowAllNew] = useState(false);
-  const [showAllProducts, setShowAllProducts] = useState(false);
-  const [addedItems, setAddedItems] = useState(new Set());
-  const [searchHistory, setSearchHistory] = useState([]);
-  const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
-
-  // Filtrar productos basado en búsqueda y categoría con mejor algoritmo
-  const filteredProducts = useMemo(() => {
-    const normalizeText = (text) =>
-      text
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
-    let filtered = catalogProducts;
-
-    // Aplicar búsqueda si hay término
-    if (searchTerm.trim()) {
-      const searchNormalized = normalizeText(searchTerm.trim());
-
-      filtered = filtered.filter((product) => {
-        const name = normalizeText(product.name);
-        const description = normalizeText(product.description);
-        const category = normalizeText(product.category);
-
-        const nameMatch = name.includes(searchNormalized);
-        const descriptionMatch = description.includes(searchNormalized);
-        const categoryMatch = category.includes(searchNormalized);
-
-        // Separar por palabras y verificar coincidencia parcial
-        const searchWords = searchNormalized.split(" ");
-        const wordMatch = searchWords.some(
-          (word) =>
-            name.includes(word) ||
-            description.includes(word) ||
-            category.includes(word)
-        );
-
-        return nameMatch || descriptionMatch || categoryMatch || wordMatch;
-      });
-    }
-
-    // Filtrar por categoría
-    if (selectedCategory !== "todos") {
-      const categoryName = categories.find(
-        (cat) => cat.id === selectedCategory
-      )?.name;
-      if (categoryName) {
-        filtered = filtered.filter(
-          (product) =>
-            product.category.toLowerCase() === categoryName.toLowerCase()
-        );
-      }
-    }
-
-    return filtered;
-  }, [searchTerm, selectedCategory]);
-
-  // Separar productos por tipo
-  const popularProducts = filteredProducts.filter(
-    (product) => product.isPopular
-  );
-  const newProducts = filteredProducts.filter((product) => product.isNew);
-  const allProducts = filteredProducts.filter(
-    (product) => !product.isPopular && !product.isNew
-  );
-
-  // Sugerencias de búsqueda
-  const searchSuggestions = useMemo(() => {
-    if (!searchTerm.trim() || searchTerm.length < 2) return [];
-
-    const suggestions = new Set();
-    const searchLower = searchTerm.toLowerCase();
-
-    catalogProducts.forEach((product) => {
-      // Sugerir nombres de productos
-      if (product.name.toLowerCase().includes(searchLower)) {
-        suggestions.add(product.name);
-      }
-      // Sugerir categorías
-      if (product.category.toLowerCase().includes(searchLower)) {
-        suggestions.add(product.category);
-      }
-    });
-
-    return Array.from(suggestions).slice(0, 5);
-  }, [searchTerm]);
-
-  // Determinar cuántos productos mostrar
-  const getDisplayedProducts = (products, showAll, defaultCount = 2) => {
-    return showAll ? products : products.slice(0, defaultCount);
-  };
-
-  const handleAddToCart = useCallback((productId) => {
-    console.log("Agregado al carrito:", productId);
-
-    // Efecto visual de agregado
-    setAddedItems((prev) => new Set(prev).add(productId));
-    setTimeout(() => {
-      setAddedItems((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(productId);
-        return newSet;
-      });
-    }, 1000);
-  }, []);
-
-  const handleSearchChange = useCallback((e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
-    setShowSearchSuggestions(value.length >= 2);
-  }, []);
-
-  const handleSearchSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (searchTerm.trim()) {
-        // Agregar a historial de búsqueda
-        setSearchHistory((prev) => {
-          const newHistory = [
-            searchTerm.trim(),
-            ...prev.filter((item) => item !== searchTerm.trim()),
-          ];
-          return newHistory.slice(0, 5); // Mantener solo las últimas 5 búsquedas
-        });
-      }
-      setShowSearchSuggestions(false);
-    },
-    [searchTerm]
-  );
-
-  const handleSuggestionClick = useCallback((suggestion) => {
-    setSearchTerm(suggestion);
-    setShowSearchSuggestions(false);
-
-    // Agregar a historial
-    setSearchHistory((prev) => {
-      const newHistory = [
-        suggestion,
-        ...prev.filter((item) => item !== suggestion),
-      ];
-      return newHistory.slice(0, 5);
-    });
-  }, []);
-
-  const clearSearch = useCallback(() => {
-    setSearchTerm("");
-    setShowSearchSuggestions(false);
-  }, []);
-
-  const resetAllFilters = useCallback(() => {
-    setSearchTerm("");
-    setSelectedCategory("todos");
-    setShowSearchSuggestions(false);
-  }, []);
-
-  // Cerrar sugerencias al hacer clic fuera
-  useEffect(() => {
-    const handleClickOutside = () => setShowSearchSuggestions(false);
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
-
+  const {
+    searchTerm,
+    selectedCategory,
+    totalResults,
+    showAllPopular,
+    showAllNew,
+    showAllProducts,
+    addedItems,
+    searchHistory,
+    showSearchSuggestions,
+    categories,
+    popularProducts,
+    newProducts,
+    allProducts,
+    filteredProducts,
+    searchSuggestions,
+    setSelectedCategory,
+    setShowAllPopular,
+    setShowAllNew,
+    setShowAllProducts,
+    getDisplayedProducts,
+    handleAddToCart,
+    handleSearchChange,
+    handleSearchSubmit,
+    handleSuggestionClick,
+    clearSearch,
+    resetAllFilters,
+    setShowSearchSuggestions,
+  } = useCatalogLogic();
   const hasResults =
     popularProducts.length > 0 ||
     newProducts.length > 0 ||
     allProducts.length > 0;
-  const totalResults = filteredProducts.length;
 
-  const handleLogout = () => {
-    localStorage.removeItem("auth");
-    alert("Sesión cerrada exitosamente");
-    window.location.href = "/"; // o usar navigate() si usás react-router
-  };
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const productoId = queryParams.get("producto");
+
+  const [searchParams] = useSearchParams();
+  const categoriaFromURL = searchParams.get("categoria");
+
+  useEffect(() => {
+    if (categoriaFromURL) {
+      const categoriaId = categories.find(
+        (c) => c.name.toLowerCase() === categoriaFromURL.toLowerCase()
+      )?.id;
+      if (categoriaId) setSelectedCategory(categoriaId);
+    }
+  }, [categoriaFromURL, categories, setSelectedCategory]);
+
+  const cartCount = useCartCount();
+
+  const filteredByProductoId = productoId
+  ? allProducts.filter((p) => p.id === productoId)
+  : null;
+
 
   return (
     <div className="catalog-container">
       {/* Header */}
       <header className="navbar">
-        <div className="logo"><img src="/assets/logo.png" alt="" /></div>
+        <div className="logo">
+          <img src="/assets/logo.png" alt="" />
+        </div>
         <nav className="nav">
-          <a href="/inicio"><House />Inicio</a>
-          <a href="/catalogo" className="active"><Hamburger />Catálogo</a>
-          <a href="/carrito"><ShoppingCart />Carrito</a>
-          <a href="/pedidos"><Package />Mis pedidos</a>
+          <a href="/inicio">
+            <House />
+            Inicio
+          </a>
+          <a href="/catalogo" className="active">
+            <Hamburger />
+            Catálogo
+          </a>
+          <a href="/carrito">
+            <ShoppingCart />
+            Carrito{" "}
+            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
+          </a>
+          <a href="/pedidos">
+            <Package />
+            Mis pedidos
+          </a>
         </nav>
         <div className="user-info">
           <User size={20} />
@@ -562,9 +452,9 @@ const Catalogo = () => {
               )}
             </div>
 
-            <div className="products-container">
-              {getDisplayedProducts(allProducts, showAllProducts, 6).map(
-                (product) => (
+            {productoId && filteredByProductoId?.length > 0 ? (
+              <div className="products-container">
+                {filteredByProductoId.map((product) => (
                   <div key={product.id} className="product-card">
                     <div className="product-image-container">
                       <img
@@ -573,32 +463,22 @@ const Catalogo = () => {
                         className="product-image-full"
                       />
                     </div>
-
                     <div className="product-card-body">
                       <span className="category-tag">{product.category}</span>
                       <h3 className="product-name">{product.name}</h3>
-                      <p className="product-description line-clamp-2">
+                      <p className="product-description">
                         {product.description}
                       </p>
-                      <div className="product-card-footer">
-                        <span className="product-price">
-                          ${product.price.toFixed(2)}
-                        </span>
-                        <button
-                          onClick={() => handleAddToCart(product.id)}
-                          className={`add-button ${
-                            addedItems.has(product.id) ? "added" : ""
-                          }`}
-                          aria-label="Agregar al carrito"
-                        >
-                          <Plus size={20} />
-                        </button>
-                      </div>
                     </div>
                   </div>
-                )
-              )}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <>
+                {/* aquí van TODAS tus secciones de catálogo completas como las tenías */}
+                {/* Buscador, filtros, populares, nuevos, todos los productos, etc. */}
+              </>
+            )}
 
             {/* Botón para mostrar más en móvil */}
             {allProducts.length > 6 && !showAllProducts && (

@@ -18,72 +18,26 @@ import {
   Clock,
   Gift,
 } from "lucide-react";
+import { useCartCount } from "../../../components/hooks/useCartCount"; // ajustar ruta
+import { useCarritoLogic } from "../../../components/dashboard/carrito/useCarritoLogic";
 
 const Carrito = () => {
-  const [selectedSchool, setSelectedSchool] = useState("");
+  const {
+    selectedSchool,
+    setSelectedSchool,
+    deliveryMethod,
+    setDeliveryMethod,
+    address,
+    setAddress,
+    cartItems,
+    setCartItems,
+    updateQuantity,
+    removeItem,
+    subtotal,
+    confirmarPedido,
+  } = useCarritoLogic();
 
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Coca Cola 500ml",
-      category: "Bebidas",
-      price: 2.5,
-      quantity: 1,
-      image: "../../../../public/assets/products/product-cola.png",
-    },
-    {
-      id: 2,
-      name: "Papas Lays classic",
-      category: "Snacks",
-      price: 1.75,
-      quantity: 1,
-      image: "../../../../public/assets/products/product-papa_fritas.png",
-    },
-    {
-      id: 3,
-      name: "Cuaderno A4",
-      category: "Útiles",
-      price: 3.25,
-      quantity: 1,
-      image: "../../../../public/assets/products/product-hojas.png",
-    },
-    {
-      id: 4,
-      name: "Chocolate Tita",
-      category: "Snacks",
-      price: 2.0,
-      quantity: 1,
-      image: "../../../../public/assets/products/product-chocolate-tita.png",
-    },
-  ]);
-
-  const [deliveryMethod, setDeliveryMethod] = useState("domicilio");
-  const [address, setAddress] = useState("Av. Principal 123, Ciudad");
-
-  const updateQuantity = (id, delta) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
-  };
-
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
-  const handleLogout = () => {
-    localStorage.removeItem("auth");
-    alert("Sesión cerrada exitosamente");
-    navigate("/");
-  };
+  const cartCount = useCartCount();
 
   return (
     <div className="cart-page">
@@ -102,7 +56,8 @@ const Carrito = () => {
           </a>
           <a href="/carrito" className="active">
             <ShoppingCart />
-            Carrito
+            Carrito{" "}
+            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
           </a>
           <a href="/pedidos">
             <Package />
@@ -281,9 +236,9 @@ const Carrito = () => {
             <p className="total">
               Total <span>${subtotal.toFixed(2)}</span>
             </p>
-            <div className="button">
-              <button className="confirm-button">Confirmar Pedido</button>
-            </div>
+            <button className="confirm-button" onClick={confirmarPedido}>
+              Confirmar Pedido
+            </button>
           </div>
         </div>
       </section>

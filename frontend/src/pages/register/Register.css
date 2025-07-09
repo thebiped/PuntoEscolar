@@ -82,7 +82,7 @@ body {
   color: #333;
 }
 
-.input-icon {
+.input-content-register {
   display: flex;
   align-items: center;
   border: 1.5px solid #ef4444;
@@ -92,7 +92,7 @@ body {
   background-color: #fff;
 }
 
-.input-icon input {
+.input-content-register input {
   border: none;
   outline: none;
   flex: 1;

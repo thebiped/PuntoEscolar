@@ -37,7 +37,7 @@ const Login = () => {
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="input-container">
               <label>Correo Electrónico</label>
-              <div className="input-icon">
+              <div className="input-content-login">
                 <Mail size={18} />
                 <input type="email" placeholder="ejemplo@correo.com" value={email} onChange={(e) => setEmail(e.target.value)} required/>
               </div>
@@ -45,7 +45,7 @@ const Login = () => {
 
             <div className="input-container">
               <label>Contraseña</label>
-              <div className="input-icon">
+              <div className="input-content-login">
                 <Lock size={18} />
                 <input type="password" placeholder="********" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>

@@ -12,7 +12,7 @@ const Register = () => {
           <form className="register-form">
             <div className="input-container">
               <label>Nombre</label>
-              <div className="input-icon">
+              <div className="input-content-register">
                 <User size={18} />
                 <input type="text" placeholder="Tu nombre" />
               </div>
@@ -20,7 +20,7 @@ const Register = () => {
 
             <div className="input-container">
               <label>Correo Electrónico</label>
-              <div className="input-icon">
+              <div className="input-content-register">
                 <Mail size={18} />
                 <input type="email" placeholder="ejemplo@correo.com" />
               </div>
@@ -28,7 +28,7 @@ const Register = () => {
 
             <div className="input-container">
               <label>Contraseña</label>
-              <div className="input-icon">
+              <div className="input-content-register">
                 <Lock size={18} />
                 <input type="password" placeholder="••••••••" />
               </div>
@@ -36,7 +36,7 @@ const Register = () => {
 
             <div className="input-container">
               <label>Confirmar Contraseña</label>
-              <div className="input-icon">
+              <div className="input-content-register">
                 <Lock size={18} />
                 <input type="password" placeholder="••••••••" />
               </div>
