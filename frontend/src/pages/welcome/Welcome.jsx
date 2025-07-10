@@ -29,7 +29,7 @@ const Welcome = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 800, 
+      duration: 800,
       easing: "ease-out",
       once: true,
     });
@@ -57,11 +57,13 @@ const Welcome = () => {
         </nav>
 
         <div className="nav-buttons">
-          <button className="btn-link">
+          <button className="btn-login">
             <a href="/login">Iniciar Sesión</a>
           </button>
-          <button className="btn-primary">
-            <a href="/registro">Comenzar</a>
+          <button className="btn-register">
+            <a href="/registro" className="user-profile-inner">
+              Comenzar
+            </a>
           </button>
         </div>
       </header>
@@ -69,18 +71,19 @@ const Welcome = () => {
       {/* HERO */}
       <section className="hero">
         <div className="hero-text" data-aos="fade-up">
-          <h1>
+          <h1 className=".text-shadow-pop-bl">
             Tu tienda escolar <span>siempre disponible</span>
           </h1>
           <p>
             Pedí tus útiles escolares online y recibilos en el cole o en tu
             casa. Rápido, fácil y pensado especialmente para estudiantes.
           </p>
-          <button className="btn-hero">
-            <div className="icon">
+          <button className="button-hero">
+            <div className="dots_border"></div>
+            <div className="icon sparkle">
               <Rocket />
             </div>
-            <a href="/registro">Comenzar Ahora</a>
+            <span className="text_button">Comenzar Ahora</span>
           </button>
         </div>
         <div className="hero-img" data-aos="zoom-in">
@@ -172,11 +175,13 @@ const Welcome = () => {
             </div>
           </div>
         </div>
-        <button className="btn-benefit-card">
-          <div className="icon">
-            <Rocket />
-          </div>
-          <a href="/registro">Comenzar Ahora</a>
+        <button className="btn-benefit">
+          <a href="/registro" className="user-profile-inner">
+            <div className="icon">
+              <Rocket />
+            </div>
+            Comenzar Ahora
+          </a>
         </button>
       </section>
 
@@ -254,7 +259,11 @@ const Welcome = () => {
           </p>
         </div>
         <div className="social-container">
-          <div className="social-card instagram" data-aos="zoom-in-up" data-aos-delay="150">
+          <div
+            className="social-card instagram"
+            data-aos="zoom-in-up"
+            data-aos-delay="150"
+          >
             <div className="social-card-content">
               <div className="icon">
                 <Instagram size={36} color="#fff" />
@@ -268,7 +277,11 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <div className="social-card facebook" data-aos="zoom-in-up" data-aos-delay="150">
+          <div
+            className="social-card facebook"
+            data-aos="zoom-in-up"
+            data-aos-delay="150"
+          >
             <div className="social-card-content">
               <div className="icon">
                 <Facebook size={36} color="#fff" />
@@ -282,7 +295,11 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <div className="social-card whatsapp" data-aos="zoom-in-up" data-aos-delay="150">
+          <div
+            className="social-card whatsapp"
+            data-aos="zoom-in-up"
+            data-aos-delay="150"
+          >
             <div className="social-card-content">
               <div className="icon">
                 <Phone size={36} color="#fff" />
@@ -302,11 +319,19 @@ const Welcome = () => {
       {/* FOOTER */}
       <footer className="footer" data-aos="fade-up">
         <div className="footer-content">
-          <div className="footer-column" data-aos="fade-right" data-aos-delay="100">
+          <div
+            className="footer-column"
+            data-aos="fade-right"
+            data-aos-delay="100"
+          >
             <h2 className="footer-logo">El Punto Escolar</h2>
             <p>Tu tienda escolar siempre disponible</p>
           </div>
-          <div className="footer-column" data-aos="fade-up" data-aos-delay="200">
+          <div
+            className="footer-column"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h4>Enlaces rápidos</h4>
             <ul className="footer-links">
               <li>
@@ -326,7 +351,11 @@ const Welcome = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-column" data-aos="fade-left" data-aos-delay="300">
+          <div
+            className="footer-column"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             <h4>Contactos</h4>
             <div className="footer-contact">
               <div className="contact-link">
