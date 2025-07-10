@@ -61,6 +61,8 @@ body {
 }
 
 .navbar .nav a {
+  display: flex;
+  align-items: center;
   font-size: 0.8rem;
 }
 
@@ -223,7 +225,7 @@ body {
 }
 
 .product-card .icon {
-  width: 290px;
+  width: 100%;
   height: 200px;
   display: flex;
   align-items: center;
@@ -239,8 +241,8 @@ body {
   border-radius: 8px;
 }
 
-.product-card {
-  max-width: 100px;
+.product-card.hoverable{
+  max-width: 270px;
   background-color: #f7f9fc;
   border: 1px solid rgba(255, 0, 161, 0.25);
   border-radius: 12px;

@@ -92,36 +92,51 @@ const Welcome = () => {
       </section>
 
       {/* COMO FUNCIONA */}
-      <section className="steps ">
+      <section className="steps">
         <h2>¿Cómo funciona?</h2>
         <p>En solo 3 pasos simples tenés todo lo que necesitás para el cole</p>
         <div className="steps-container">
+          {/* Paso 1 */}
           <div className="step-card" data-aos="fade-up" data-aos-delay="100">
-            <div className="step-card-content">
-              <div className="icon">
-                <CircleCheck size={36} color="#0035B2" />
+            <div className="blob"></div>
+            <div className="bg">
+              <div className="step-card-content">
+                <div className="icon">
+                  <CircleCheck size={48} color="#0035B2" />
+                </div>
+                <p>Registrate en menos de 1 minuto</p>
               </div>
-              <p>Registrate en menos de 1 minuto</p>
             </div>
           </div>
+
+          {/* Paso 2 */}
           <div className="step-card" data-aos="fade-up" data-aos-delay="100">
-            <div className="step-card-content">
-              <div className="icon">
-                <Popcorn size={36} color="#B21200" />
+            <div className="blob"></div>
+            <div className="bg">
+              <div className="step-card-content">
+                <div className="icon">
+                  <Popcorn size={48} color="#B21200" />
+                </div>
+                <p>Elegí tus productos del catálogo</p>
               </div>
-              <p>Elegí tus productos del catálogo</p>
             </div>
           </div>
+
+          {/* Paso 3 */}
           <div className="step-card" data-aos="fade-up" data-aos-delay="100">
-            <div className="step-card-content">
-              <div className="icon">
-                <Truck size={36} color="#9D00B2" />
+            <div className="blob"></div>
+            <div className="bg">
+              <div className="step-card-content">
+                <div className="icon">
+                  <Truck size={48} color="#9D00B2" />
+                </div>
+                <p>Recibilos en el cole o en tu casa</p>
               </div>
-              <p>Recibilos en el cole o en tu casa</p>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* BENEFICIOS */}
       <section className="benefits">
@@ -197,11 +212,11 @@ const Welcome = () => {
               <div className="header">
                 <h4>María González</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100"  />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200"  />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300"  />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400"  />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500"  />
                 </p>
               </div>
               <p>
@@ -215,11 +230,11 @@ const Welcome = () => {
               <div className="header">
                 <h4>Carlos Rodríguez</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500" />
                 </p>
               </div>
               <p>
@@ -233,11 +248,11 @@ const Welcome = () => {
               <div className="header">
                 <h4>Ana Martínez</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={18} />
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400" />{" "}
+                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500" />
                 </p>
               </div>
               <p>
@@ -264,6 +279,10 @@ const Welcome = () => {
             data-aos="zoom-in-up"
             data-aos-delay="150"
           >
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+
             <div className="social-card-content">
               <div className="icon">
                 <Instagram size={36} color="#fff" />
@@ -271,7 +290,7 @@ const Welcome = () => {
               <div className="content">
                 <h3>Instagram</h3>
                 <div className="description">
-                  <h5>@mikioscoescolar</h5>
+                  <h5>@elpunto_escolar</h5>
                   <p>Seguinos para ver productos y ofertas</p>
                 </div>
               </div>
@@ -282,6 +301,11 @@ const Welcome = () => {
             data-aos="zoom-in-up"
             data-aos-delay="150"
           >
+
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+
             <div className="social-card-content">
               <div className="icon">
                 <Facebook size={36} color="#fff" />
@@ -300,6 +324,10 @@ const Welcome = () => {
             data-aos="zoom-in-up"
             data-aos-delay="150"
           >
+            <div className="wave"></div>
+            <div className="wave"></div>
+            <div className="wave"></div>
+            
             <div className="social-card-content">
               <div className="icon">
                 <Phone size={36} color="#fff" />
@@ -368,7 +396,7 @@ const Welcome = () => {
                 <div className="icon">
                   <MapPin size={18} />
                 </div>
-                <p>no existe la calle 231</p>
+                <p>battipede y gúemes</p>
               </div>
             </div>
           </div>
