@@ -1,225 +1,338 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .account-page {
-  max-width: 960px;
+  max-width: 1024px;
+  min-height: 100vh;
   margin: auto;
   padding: 40px 20px;
-  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* HERO */
+/* Back Button */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #64748b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 8px 0;
+}
+
+.back-button:hover {
+  color: #1e293b;
+}
+
+.back-button svg {
+  transition: transform 0.2s ease;
+}
+
+.back-button:hover svg {
+  transform: translateX(-4px);
+}
+
+/* Hero Section */
 .account-hero {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 30px;
-  color: white;
-  background: linear-gradient(to right, #f87171, #f43f5e);
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 32px;
+  padding: 40px;
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #4338ca 100%);
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
+
+.account-content-header{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-content-body{
+  margin: 0.5rem 0;
+}
 .account-hero .icon {
-  width: 56px;
-  height: 56px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ef4444;
-  background: white;
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .account-hero h1 {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .account-hero p {
-  margin-bottom: 8px;
+  font-size: 1.125rem;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
 }
 
 .hero-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .btn-primary {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
+  gap: 8px;
+  padding: 12px 20px;
   font-weight: 500;
   color: white;
-  background-color: #3b82f6;
-  border: none;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
+  gap: 8px;
+  padding: 12px 20px;
   font-weight: 500;
-  color: #ef4444;
-  background: white;
-  border: 2px solid white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.back-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 20px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  color: #3b82f6;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.edit-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.save-button {
-  padding: 6px 14px;
   color: white;
-  background-color: #10b981;
-  border: none;
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
-.cancel-button {
-  padding: 6px 14px;
-  color: #374151;
-  background-color: #e5e7eb;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
-/* CARD DE INFORMACIÓN */
-.account-info-card {
-  margin-top: 30px;
-  padding: 24px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+/* Cards */
+.account-info-card,
+.account-actions {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 32px;
+  overflow: hidden;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: 24px 24px 0 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: rgba(248, 250, 252, 0.5);
+  margin-bottom: 24px;
 }
 
 .card-header h2 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 600;
+  color: #1e293b;
+  margin: 0;
 }
 
-.edit-button {
-  padding: 6px 12px;
+.account-actions h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 20px 0;
+  padding: 24px 24px 0 24px;
+}
+
+/* Edit Controls */
+.edit-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
   color: white;
-  font-size: 0.9rem;
-  background-color: #3b82f6;
+  background-color: #059669;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+.save-button:hover {
+  background-color: #047857;
+  transform: translateY(-1px);
+}
+
+.cancel-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  color: #475569;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+/* Form Fields */
 .info-field {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+  padding: 0 24px;
+}
+
+.info-field:last-child {
+  padding-bottom: 24px;
 }
 
 .info-field label {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-  font-size: 0.95rem;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
   color: #374151;
 }
 
 .info-field input {
   width: 100%;
-  padding: 10px;
-  font-size: 0.95rem;
-  color: #111827;
-  background: #f9fafb;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
   border: 1px solid #d1d5db;
-  border-radius: 6px;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
 }
 
-/* ACCIONES */
-.account-actions {
-  margin-top: 30px;
-  padding: 20px 24px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+.info-field input:disabled {
+  background: #f9fafb;
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
-.account-actions h2 {
-  margin-bottom: 14px;
-  font-size: 1.2rem;
-  font-weight: 600;
+.info-field input:not(:disabled) {
+  background: white;
 }
 
+.info-field input:not(:disabled):focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Action Buttons */
 .action-buttons {
-  display: flex;
+  display: grid;
   gap: 16px;
-  flex-wrap: wrap;
-}
-
-.logout-button .content,
-.delete-button .content {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 0 24px 24px 24px;
 }
 
 .logout-button,
 .delete-button {
-    min-width: 200px;
   display: flex;
   align-items: center;
-  gap: 20px;
-  flex: 1;
-  padding: 14px;
+  gap: 16px;
+  padding: 16px;
   font-weight: 500;
   color: #b91c1c;
-  background: #fee2e2;
+  background: white;
   border: 1px solid #fecaca;
-  border-radius: 8px;
+  border-radius: 12px;
   text-align: left;
   cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
 .logout-button:hover,
 .delete-button:hover {
-  background: #fecaca;
+  background: #fef2f2;
+  border-color: #fca5a5;
+  transform: translateY(-1px);
 }
 
-.logout-button span,
-.delete-button span {
-  font-size: 0.85rem;
+.logout-button .icon,
+.delete-button .icon {
+  padding: 8px;
+  background: #fee2e2;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #dc2626;
+}
+
+.logout-button .content,
+.delete-button .content {
+  flex: 1;
+}
+
+.logout-button .content h3,
+.delete-button .content h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #991b1b;
+  margin: 0 0 4px 0;
+}
+
+.logout-button .content span,
+.delete-button .content span {
+  font-size: 14px;
   font-weight: 400;
-  color: #7f1d1d;
+  color: #dc2626;
 }
 
-
-/*----Modal----*/
-/* MODAL de confirmación */
+/* Modals */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -229,8 +342,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  padding: 16px;
 }
 
 .modal-content {
@@ -238,83 +352,131 @@
   max-width: 400px;
   padding: 24px 28px;
   background: white;
-  border-radius: 12px;
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   animation: fadeIn 0.2s ease-out;
 }
 
 .modal-content h3 {
-  margin-bottom: 10px;
-  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
 }
 
 .modal-content p {
-  margin-bottom: 20px;
-  font-size: 0.95rem;
-  color: #4b5563;
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.5;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .confirm-btn {
-  padding: 10px 18px;
+  padding: 10px 20px;
   font-weight: 500;
   color: white;
-  background-color: #10b981;
+  background-color: #059669;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #047857;
+  transform: translateY(-1px);
 }
 
 .cancel-btn {
-  padding: 10px 18px;
-  background-color: #f3f4f6;
+  padding: 10px 20px;
+  background-color: #f1f5f9;
   font-weight: 500;
-  color: #374151;
-  border: none;
-  border-radius: 6px;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
+.cancel-btn:hover {
+  background-color: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+/* Success Modal */
+.success-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.success-icon {
+  padding: 8px;
+  background: #d1fae5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #059669;
+}
+
+.success-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #065f46;
+  margin: 0;
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.97);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .account-page {
     padding: 30px 16px;
   }
 
   .account-hero {
-    padding: 20px;
-    gap: 10px;
+    padding: 24px;
+    gap: 16px;
     text-align: center;
     align-items: center;
   }
 
   .account-hero .icon {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
+    width: 56px;
+    height: 56px;
   }
 
   .account-hero h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  .account-hero p {
+    font-size: 1rem;
   }
 
   .hero-actions {
     justify-content: center;
+    flex-direction: column;
   }
 
   .btn-primary,
@@ -325,7 +487,7 @@
 
   .back-button {
     margin-bottom: 16px;
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 
   .edit-controls {
@@ -335,27 +497,12 @@
 
   .card-header {
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
     align-items: flex-start;
   }
 
-  .edit-button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .info-field input {
-    padding: 0.8rem;
-  }
-
   .action-buttons {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .logout-button,
-  .delete-button {
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 
   .modal-content {
@@ -364,7 +511,7 @@
 
   .modal-buttons {
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .confirm-btn,
@@ -379,11 +526,11 @@
   }
 
   .account-hero {
-    padding: 16px;
+    padding: 20px;
   }
 
   .account-hero h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .account-hero p {
@@ -392,45 +539,40 @@
 
   .btn-primary,
   .btn-outline {
-    font-size: 0.9rem;
-    padding: 8px 12px;
+    font-size: 14px;
+    padding: 10px 16px;
   }
 
   .save-button,
   .cancel-button {
-    font-size: 0.85rem;
-    padding: 6px 10px;
+    font-size: 12px;
+    padding: 6px 12px;
   }
 
   .card-header h2,
   .account-actions h2 {
-    font-size: 1rem;
-  }
-
-  .edit-button {
-    font-size: 0.85rem;
-    padding: 6px 10px;
+    font-size: 1.1rem;
   }
 
   .info-field label {
-    font-size: 0.85rem;
+    font-size: 13px;
   }
 
   .info-field input {
-    font-size: 0.85rem;
-    padding: 0.7rem;
+    font-size: 14px;
+    padding: 10px 12px;
   }
 
   .logout-button,
   .delete-button {
     gap: 12px;
     padding: 12px;
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 
-  .logout-button span,
-  .delete-button span {
-    font-size: 0.75rem;
+  .logout-button .content span,
+  .delete-button .content span {
+    font-size: 12px;
   }
 
   .modal-content h3 {
@@ -438,6 +580,6 @@
   }
 
   .modal-content p {
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 }

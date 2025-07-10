@@ -1,6 +1,8 @@
 // pages/dashboard/carrito/Carrito.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Carrito.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   Minus,
   Plus,
@@ -42,9 +44,16 @@ const Carrito = () => {
   const cartCount = useCartCount();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
     <div className="cart-page">
-      <header className="navbar">
+      <header className="navbar" data-aos="fade-down">
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
@@ -62,11 +71,11 @@ const Carrito = () => {
             <House />
             Inicio
           </a>
-          <a href="/catalogo" className="active">
+          <a href="/catalogo" >
             <Hamburger />
             Catálogo
           </a>
-          <a href="/carrito">
+          <a href="/carrito" className="active">
             <ShoppingCart />
             Carrito{" "}
             {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
@@ -82,8 +91,8 @@ const Carrito = () => {
         </nav>
       </header>
       {/* HERO */}
-      <section className="cart-hero">
-        <div className="cart-hero-text">
+      <section className="cart-hero" data-aos="fade-down">
+        <div className="cart-hero-text" data-aos="fade-up" data-aos-delay="150">
           <div className="cart-header">
             <div className="cart-hero-icon">
               <ShoppingBag size={70} />
@@ -109,14 +118,19 @@ const Carrito = () => {
 
       {/* CONTENIDO */}
       <section className="cart-content">
-        <div className="cart-items">
+        <div className="cart-items" data-aos="fade-right">
           <div className="cart-items-header">
             <h3>Productos en tu carrito</h3>
             <span className="item-count">{cartItems.length} artículos</span>
           </div>
 
-          {cartItems.map((item) => (
-            <div key={item.id} className="cart-item">
+          {cartItems.map((item, index) => (
+            <div
+              key={item.id}
+              className="cart-item"
+              data-aos="zoom-in-up"
+              data-aos-delay={index * 100}
+            >
               <img src={item.image} alt={item.name} />
               <div className="cart-item-info">
                 <h4>{item.name}</h4>
@@ -140,7 +154,7 @@ const Carrito = () => {
         </div>
 
         <div className="cart-summary">
-          <div className="delivery-method">
+          <div className="delivery-method" data-aos="fade-up">
             <h4>Método de Entrega</h4>
             <div className="delivery-method-container">
               <div
@@ -237,7 +251,11 @@ const Carrito = () => {
             </div>
           </div>
 
-          <div className="order-summary">
+          <div
+            className="order-summary"
+            data-aos="fade-left"
+            data-aos-delay="200"
+          >
             <h4>Resumen del Pedido</h4>
             <p>
               Subtotal <span>${subtotal.toFixed(2)}</span>
@@ -256,13 +274,21 @@ const Carrito = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="footer">
+      <footer className="footer" data-aos="fade-up">
         <div className="footer-content">
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-right"
+            data-aos-delay="100"
+          >
             <h2 className="footer-logo">El Punto Escolar</h2>
             <p>Tu tienda escolar siempre disponible</p>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h4>Enlaces rápidos</h4>
             <ul className="footer-links">
               <li>
@@ -279,7 +305,11 @@ const Carrito = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             <h4>Contactos</h4>
             <div className="footer-contact">
               <div className="contact-link">

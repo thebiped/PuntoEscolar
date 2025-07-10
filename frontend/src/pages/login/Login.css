@@ -6,33 +6,31 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background: #f9fafb;
   color: #333;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 6rem;
-  background: #f9fafb;
-}
-
 /* ====== CONTAINER GENERAL ====== */
 .login-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 90%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fefefe;
-  border-radius: 10px;
-  box-shadow: 0 0 12px rgba(255, 38, 0, 0.25);
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .login-form-section {
   width: 50%;
-  padding: 6rem 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2.5rem;
   background-color: #f7f9fc;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   border: 1px solid rgba(96, 150, 231, 0.25);
 }
 
@@ -45,47 +43,52 @@ body {
 .login-image-section img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  object-position: center;
 }
 
-/* ====== TITULOS ====== */
-.logo {
-  color: #6366f1;
-  font-size: 1.3rem;
+.login-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.login-form-content .logo {
+  width: 100%;
+  height: auto;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  color: #6366f1;
 }
 
-.title {
+.login-form-content .title {
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
   color: #ef4444;
-  font-size: 1.5rem;
-  margin-bottom: 30px;
 }
 
 /* ====== FORMULARIO ====== */
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.input-container {
-  display: flex;
-  flex-direction: column;
   gap: 10px;
 }
 
-.input-container label {
+.login-form .input-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
+}
+
+.login-form .input-container label {
+  display: flex;
+  flex-direction: column;
   font-size: 0.9rem;
   color: #333;
 }
 
-.input-content-login {
+.login-form .input-content-login {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -95,14 +98,13 @@ body {
   border-radius: 8px;
 }
 
-.input-content-login input {
+.login-form .input-content-login input {
   flex: 1;
   border: none;
   outline: none;
   font-size: 0.9rem;
 }
 
-/* ====== CHECKBOX ====== */
 .login-options {
   display: flex;
   justify-content: space-between;
@@ -116,23 +118,29 @@ body {
 }
 
 /* ====== BOTON ====== */
+.button-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
 .login-btn {
-  margin-top: 10px;
-  background: linear-gradient(to right, #f97316, #ef4444);
-  color: white;
-  border: none;
-  padding: 12px;
+  width: fit-content;
+  padding: 1rem 8rem;
   font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(to right, #f97316, #ef4444);
+  border: none;
   border-radius: 10px;
+  transition: all 0.3s ease;
   cursor: pointer;
-  transition: background 0.3s;
 }
 
 .login-btn:hover {
+  transform: scale(1.05);
   background: linear-gradient(to right, #ea580c, #dc2626);
 }
 
-/* ====== LINK DE REGISTRO ====== */
 .register-link {
   margin-top: 20px;
   font-size: 0.85rem;
@@ -161,23 +169,28 @@ body {
   }
 
   .login-container {
-    flex-direction: column;
-    width: 100%;
-    border-radius: 0;
-    box-shadow: none;
+    min-height: 130vh;
+    height: auto;
+    flex-direction: column-reverse;
   }
 
   .login-form-section,
-  .login-image-section {
+  .login-image-section{
     width: 100%;
     border-radius: 0;
+  }
+
+  .login-form-section{
     padding: 2rem 1.5rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: visible;
   }
 
   .login-image-section {
     height: 250px;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .login-image-section img {
@@ -191,6 +204,7 @@ body {
   }
 
   .login-btn {
+    width: 100%;
     font-size: 0.95rem;
     padding: 0.9rem;
   }

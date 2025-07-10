@@ -75,10 +75,17 @@ body {
 }
 
 .pedidos-hero-header .icono {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.1);
-  padding: 1.5rem 2rem;
-  border: 1px solid #fff;
-  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .pedidos-hero-header h1 {
@@ -96,7 +103,8 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0.8rem 1.2rem;
+  padding: 1.2rem 1.8rem;
+  font-size: 1rem;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -109,9 +117,12 @@ body {
 }
 
 .btn-cart {
-  background: transparent;
-  border: 1px solid #fff;
   color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .estadisticas {
@@ -173,9 +184,11 @@ body {
 }
 
 .historial-header .sub {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: 0.9rem;
   color: #555;
-  display: inline-block;
 }
 
 .no-pedidos {

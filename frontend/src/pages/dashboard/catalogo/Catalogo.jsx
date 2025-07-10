@@ -17,8 +17,10 @@ import {
   Backpack,
   House,
   Hamburger,
-    Menu,
+  Menu,
 } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useCatalogLogic } from "../../../components/dashboard/catalogo/useCatalogLogic";
 import { useCartCount } from "../../../components/hooks/useCartCount";
 import "./Catalogo.css";
@@ -74,18 +76,43 @@ const Catalogo = () => {
     }
   }, [categoriaFromURL, categories, setSelectedCategory]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   const cartCount = useCartCount();
 
   const filteredByProductoId = productoId
-  ? allProducts.filter((p) => p.id === productoId)
-  : null;
+    ? allProducts.filter((p) => p.id === productoId)
+    : null;
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [pendingProductId, setPendingProductId] = useState(null);
+
+  const handleAddToCartWithConfirm = (productId) => {
+    setPendingProductId(productId);
+    setModalVisible(true);
+  };
+
+  const confirmAddToCart = () => {
+    handleAddToCart(pendingProductId);
+    setModalVisible(false);
+    setPendingProductId(null);
+  };
+
+  const cancelAddToCart = () => {
+    setModalVisible(false);
+    setPendingProductId(null);
+  };
   return (
     <div className="catalog-container">
       {/* Header */}
-      <header className="navbar">
+      <header className="navbar" data-aos="fade-down">
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
@@ -99,7 +126,7 @@ const Catalogo = () => {
         </button>
 
         <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="/inicio" >
+          <a href="/inicio">
             <House />
             Inicio
           </a>
@@ -123,14 +150,22 @@ const Catalogo = () => {
         </nav>
       </header>
 
-      <div className="catalog-header">
-        <div className="catalog-header-content">
+      <div className="catalog-header" data-aos="fade-right">
+        <div
+          className="catalog-header-content"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
           <div className="catalog-header-icon">
             <ShoppingCart size={38} />
           </div>
           <div className="catalog-header-text">
-            <h1>Catálogo de productos</h1>
-            <p>Explora y encuentra lo que necesites para la escuela</p>
+            <h1 data-aos="fade-up" data-aos-delay="300">
+              Catálogo de productos
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="400">
+              Explora y encuentra lo que necesites para la escuela
+            </p>
           </div>
         </div>
       </div>
@@ -138,8 +173,16 @@ const Catalogo = () => {
       {/* Contenido principal */}
       <main className="catalog-content">
         {/* Buscador mejorado con sugerencias */}
-        <form onSubmit={handleSearchSubmit} className="search-form">
-          <div className="search-container-enhanced">
+        <form
+          onSubmit={handleSearchSubmit}
+          className="search-form"
+          data-aos="fade-down"
+        >
+          <div
+            className="search-container-enhanced"
+            data-aos="zoom-in"
+            data-aos-delay="150"
+          >
             <Search className="search-icon" size={20} />
             <input
               type="text"
@@ -148,6 +191,8 @@ const Catalogo = () => {
               onChange={handleSearchChange}
               onFocus={() => setShowSearchSuggestions(searchTerm.length >= 2)}
               className="search-input-enhanced"
+              data-aos="fade-up"
+              data-aos-delay="100"
               autoComplete="off"
             />
             {searchTerm && (
@@ -256,6 +301,8 @@ const Catalogo = () => {
                 className={`category-button-enhanced ${
                   selectedCategory === category.id ? "active" : ""
                 }`}
+                data-aos="flip-left"
+                data-aos-delay="100"
               >
                 <span className="category-icon">
                   {category.icon &&
@@ -270,7 +317,11 @@ const Catalogo = () => {
 
         {/* Mensaje de no resultados mejorado */}
         {!hasResults && (searchTerm || selectedCategory !== "todos") && (
-          <div className="no-results-enhanced">
+          <div
+            className="no-results-enhanced"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
             <div className="no-results-icon">
               <Search size={48} />
             </div>
@@ -325,8 +376,13 @@ const Catalogo = () => {
 
             <div className="popular-container">
               {getDisplayedProducts(popularProducts, showAllPopular).map(
-                (product) => (
-                  <div key={product.id} className="popular-card">
+                (product, index) => (
+                  <div
+                    key={product.id}
+                    className="popular-card"
+                    data-aos="fade-up"
+                    data-aos-delay={index * 100}
+                  >
                     <div className="popular-card-content">
                       <div className="popular-image-container">
                         <div className="popular-image-bg">
@@ -353,7 +409,9 @@ const Catalogo = () => {
                             ${product.price.toFixed(2)}
                           </span>
                           <button
-                            onClick={() => handleAddToCart(product.id)}
+                            onClick={() =>
+                              handleAddToCartWithConfirm(product.id)
+                            }
                             className={`add-button ${
                               addedItems.has(product.id) ? "added" : ""
                             }`}
@@ -403,44 +461,51 @@ const Catalogo = () => {
               )}
             </div>
 
-            {getDisplayedProducts(newProducts, showAllNew, 1).map((product) => (
-              <div key={product.id} className="featured-card">
-                <div className="featured-content">
-                  <div className="featured-info">
-                    {product.isBestOption && (
-                      <div className="best-option-badge">
-                        <span className="badge-dot"></span>
-                        MEJOR OPCIÓN
+            {getDisplayedProducts(newProducts, showAllNew, 1).map(
+              (product, index) => (
+                <div
+                  key={product.id}
+                  className="featured-card"
+                  data-aos="fade-left"
+                  data-aos-delay={index * 150}
+                >
+                  <div className="featured-content">
+                    <div className="featured-info">
+                      {product.isBestOption && (
+                        <div className="best-option-badge">
+                          <span className="badge-dot"></span>
+                          MEJOR OPCIÓN
+                        </div>
+                      )}
+                      <h3>{product.name}</h3>
+                      <p>{product.description}</p>
+                      <div className="featured-price">
+                        ${product.price.toFixed(2)}
                       </div>
-                    )}
-                    <h3>{product.name}</h3>
-                    <p>{product.description}</p>
-                    <div className="featured-price">
-                      ${product.price.toFixed(2)}
+                      <button
+                        onClick={() => handleAddToCartWithConfirm(product.id)}
+                        className={`featured-button ${
+                          addedItems.has(product.id) ? "added" : ""
+                        }`}
+                      >
+                        <ShoppingCart size={20} />
+                        <span>Agregar al carrito</span>
+                      </button>
                     </div>
-                    <button
-                      onClick={() => handleAddToCart(product.id)}
-                      className={`featured-button ${
-                        addedItems.has(product.id) ? "added" : ""
-                      }`}
-                    >
-                      <ShoppingCart size={20} />
-                      <span>Agregar al carrito</span>
-                    </button>
-                  </div>
 
-                  <div className="featured-image-container">
-                    <div className="featured-image-bg">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="featured-image"
-                      />
+                    <div className="featured-image-container">
+                      <div className="featured-image-bg">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="featured-image"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </section>
         )}
 
@@ -465,7 +530,7 @@ const Catalogo = () => {
             </div>
 
             {productoId && filteredByProductoId?.length > 0 ? (
-              <div className="products-container">
+              <div className="products-container" data-aos="zoom-in-up">
                 {filteredByProductoId.map((product) => (
                   <div key={product.id} className="product-card">
                     <div className="product-image-container">
@@ -486,10 +551,49 @@ const Catalogo = () => {
                 ))}
               </div>
             ) : (
-              <>
-                {/* aquí van TODAS tus secciones de catálogo completas como las tenías */}
-                {/* Buscador, filtros, populares, nuevos, todos los productos, etc. */}
-              </>
+              <div className="products-container">
+                {getDisplayedProducts(allProducts, showAllProducts, 6).map(
+                  (product, index) => (
+                    <div
+                      key={product.id}
+                      className="product-card"
+                      data-aos="fade-up"
+                      data-aos-delay={index * 50}
+                    >
+                      <div className="product-image-container">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="product-image"
+                        />
+                      </div>
+                      <div className="product-card-body">
+                        <span className="category-tag">{product.category}</span>
+                        <h3 className="product-name">{product.name}</h3>
+                        <p className="product-description">
+                          {product.description}
+                        </p>
+                        <div className="product-card-footer">
+                          <span className="product-price">
+                            ${product.price.toFixed(2)}
+                          </span>
+                          <button
+                            onClick={() =>
+                              handleAddToCartWithConfirm(product.id)
+                            }
+                            className={`add-button ${
+                              addedItems.has(product.id) ? "added" : ""
+                            }`}
+                            aria-label="Agregar al carrito"
+                          >
+                            <Plus size={20} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
             )}
 
             {/* Botón para mostrar más en móvil */}
@@ -536,13 +640,21 @@ const Catalogo = () => {
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" data-aos="fade-up">
         <div className="footer-content">
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-right"
+            data-aos-delay="100"
+          >
             <h2 className="footer-logo">El Punto Escolar</h2>
             <p>Tu tienda escolar siempre disponible</p>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h4>Enlaces rápidos</h4>
             <ul className="footer-links">
               <li>
@@ -559,7 +671,11 @@ const Catalogo = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             <h4>Contactos</h4>
             <div className="footer-contact">
               <div className="contact-link">
@@ -582,6 +698,22 @@ const Catalogo = () => {
           © 2025 Mi Kiosco Escolar. Todos los derechos reservados.
         </div>
       </footer>
+      {modalVisible && (
+        <div className="modal-overlay">
+          <div className="modal-content" data-aos="zoom-in">
+            <h3>¿Agregar al carrito?</h3>
+            <p>¿Querés guardar este producto en el carrito?</p>
+            <div className="modal-buttons">
+              <button className="confirm-btn" onClick={confirmAddToCart}>
+                Sí, agregar
+              </button>
+              <button className="cancel-btn" onClick={cancelAddToCart}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

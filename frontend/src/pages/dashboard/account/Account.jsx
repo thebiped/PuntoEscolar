@@ -1,4 +1,3 @@
-// src/pages/dashboard/account/Account.jsx
 import "./Account.css";
 import {
   User,
@@ -9,8 +8,13 @@ import {
   Trash2,
   Clock,
   ArrowLeft,
+  Check,
+  X,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 import { useNavigate } from "react-router-dom";
 
 const Account = () => {
@@ -44,29 +48,26 @@ const Account = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const handleEdit = () => {
-    setOriginalValues(formData); // Guarda los datos originales antes de editar
+    setOriginalValues(formData);
     setIsEditing(true);
   };
 
-  // Al intentar guardar (se abre modal de confirmación)
   const handleSave = () => {
     setShowConfirmModal(true);
   };
 
-  // Confirmar desde el modal
   const confirmSave = () => {
     setShowConfirmModal(false);
-    setShowSuccessModal(true); // Mostrar modal de éxito
+    setShowSuccessModal(true);
     setIsEditing(false);
   };
 
-  // Cancelar desde el modal (volver a valores originales)
   const cancelSave = () => {
-    setFormData(originalValues); // Restaura datos originales
-    setIsEditing(false); // Cierra modo edición
-    setShowConfirmModal(false); // Cierra modal
+    setFormData(originalValues);
+    setIsEditing(false);
+    setShowConfirmModal(false);
   };
-  // Cerrar modal de éxito
+
   const closeSuccessModal = () => {
     setShowSuccessModal(false);
   };
@@ -80,56 +81,69 @@ const Account = () => {
   const hasChanges =
     JSON.stringify(formData) !== JSON.stringify(originalValues);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
+
   return (
     <div className="account-page">
       {/* Volver */}
-      <button className="back-button" onClick={() => navigate(-1)}>
+      <button className="back-button" onClick={() => navigate(-1)} data-aos="fade-down">
         <ArrowLeft size={18} /> Volver
       </button>
 
       {/* Hero */}
-      <section className="account-hero">
-        <div className="icon">
-          <User size={36} />
-        </div>
-        <div>
-          <h1>¡Hola, {formData.nombre}!</h1>
-          <p>
-            Gestiona tu información personal, revisa tu actividad y personaliza
-            tu experiencia de compra.
-          </p>
-        </div>
-        <div className="hero-actions">
-          {!isEditing && (
-            <button className="btn-primary" onClick={handleEditToggle}>
-              <Edit2 size={16} />
-              Editar Perfil
-            </button>
-          )}
-          <button className="btn-outline">
-            <Clock size={16} />
-            Ver Historial
-          </button>
+      <section className="account-hero" data-aos="fade-up">
+        <div className="account-content">
+          <div className="account-content-header" data-aos="fade-right" data-aos-delay="200">
+            <div className="icon"  data-aos="zoom-in" data-aos-delay="150">
+              <User size={36} />
+            </div>
+            <h1>¡Hola, {formData.nombre}!</h1>
+          </div>
+          <div className="account-content-body">
+            <p>
+              Gestiona tu información personal, revisa tu actividad y
+              personaliza tu experiencia de compra.
+            </p>
+            <div className="hero-actions"  data-aos="fade-up" data-aos-delay="300">
+              {!isEditing && (
+                <button className="btn-primary" onClick={handleEditToggle}>
+                  <Edit2 size={16} />
+                  Editar Perfil
+                </button>
+              )}
+              <button className="btn-outline">
+                <Clock size={16} />
+                Ver Historial
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Información personal */}
-      <section className="account-info-card">
+      <section className="account-info-card"  data-aos="fade-up">
         <div className="card-header">
           <h2>Información Personal</h2>
           {isEditing && (
             <div className="edit-controls">
               <button className="save-button" onClick={handleSave}>
+                <Check size={16} />
                 Guardar
               </button>
               <button className="cancel-button" onClick={handleCancelEdit}>
+                <X size={16} />
                 Cancelar
               </button>
             </div>
           )}
         </div>
 
-        <div className="info-field">
+        <div className="info-field" data-aos="fade-right" data-aos-delay="100">
           <label>
             <User size={16} /> Nombre
           </label>
@@ -142,7 +156,7 @@ const Account = () => {
             disabled={!isEditing}
           />
         </div>
-        <div className="info-field">
+        <div className="info-field" data-aos="fade-right" data-aos-delay="200">
           <label>
             <Mail size={16} /> Correo Electrónico
           </label>
@@ -155,7 +169,7 @@ const Account = () => {
             disabled={!isEditing}
           />
         </div>
-        <div className="info-field">
+        <div className="info-field" data-aos="fade-right" data-aos-delay="300">
           <label>
             <MapPin size={16} /> Dirección
           </label>
@@ -171,10 +185,10 @@ const Account = () => {
       </section>
 
       {/* Acciones rápidas */}
-      <section className="account-actions">
+      <section className="account-actions" data-aos="fade-up">
         <h2>Acciones Rápidas</h2>
-        <div className="action-buttons">
-          <button className="logout-button" onClick={handleLogout}>
+        <div className="action-buttons" data-aos="zoom-in-up" data-aos-delay="100">
+          <button className="logout-button" onClick={handleLogout} data-aos="zoom-in-up" data-aos-delay="100">
             <div className="icon">
               <LogOut size={16} />
             </div>
@@ -183,7 +197,7 @@ const Account = () => {
               <span>Salir de tu cuenta de forma segura</span>
             </div>
           </button>
-          <button className="delete-button">
+          <button className="delete-button" data-aos="zoom-in-up" data-aos-delay="200">
             <div className="icon">
               <Trash2 size={16} />
             </div>
@@ -194,10 +208,11 @@ const Account = () => {
           </button>
         </div>
       </section>
+
       {/* Modal de confirmación */}
       {showConfirmModal && (
         <div className="modal-overlay">
-          <div className="modal-content">
+          <div className="modal-content" data-aos="zoom-in">
             <h3>¿Guardar cambios?</h3>
             <p>
               ¿Estás seguro de que deseas guardar los cambios realizados en tu
@@ -219,7 +234,12 @@ const Account = () => {
       {showSuccessModal && (
         <div className="modal-overlay">
           <div className="modal-content success">
-            <h3>¡Cambios guardados!</h3>
+            <div className="success-header">
+              <div className="success-icon">
+                <Check size={20} />
+              </div>
+              <h3>¡Cambios guardados!</h3>
+            </div>
             <p>Los datos de tu cuenta fueron actualizados correctamente.</p>
             <div className="modal-buttons">
               <button className="confirm-btn" onClick={closeSuccessModal}>

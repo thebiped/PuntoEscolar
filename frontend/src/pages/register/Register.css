@@ -5,25 +5,31 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Inter", sans-serif;
-  background: #f9fafb;
-  color: #333;
-}
-
 /* ====== CONTAINER GENERAL ====== */
-.register-container {
+.container {
+  background: #f9fafb;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 6rem;
-  background: #fefefe;
-  box-shadow: 0 0 12px rgba(255, 38, 0, 0.25);
+}
+
+.register-container {
+  width: 100%;
+  max-width: 1200px;
+  height: 90%;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .register-form-section {
   width: 50%;
-  padding: 2rem 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2.5rem;
   background-color: #f7f9fc;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -32,7 +38,7 @@ body {
 
 .register-image-section {
   width: 50%;
-  height: 100vh;
+  height: 100%;
   background: #fff;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -42,94 +48,102 @@ body {
 .register-image-section img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  object-position: center;
 }
 
-/* ====== TITULOS ====== */
-.logo {
-  color: #6366f1;
-  font-size: 1.3rem;
+.register-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.register-form-section h2 {
+  width: 100%;
+  height: auto;
+  font-size: 1.4rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  color: #6366f1;
 }
 
-.title {
+.register-form-section .title {
+  margin-bottom: 2rem;
+  font-size: 1.7rem;
   color: #ef4444;
-  font-size: 1.5rem;
-  margin-bottom: 30px;
 }
 
 /* ====== FORMULARIO ====== */
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 5px;
 }
 
-.input-container {
+.register-form .input-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  margin-bottom: 1rem;
 }
 
-.input-container label {
+.register-form .input-container label {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #333;
 }
 
-.input-content-register {
+.register-form .input-content-register {
   display: flex;
   align-items: center;
+  gap: 10px;
+  padding: 0.7rem 1rem;
+  background-color: #fff;
   border: 1.5px solid #ef4444;
   border-radius: 8px;
-  padding: 10px 14px;
-  gap: 10px;
-  background-color: #fff;
 }
 
-.input-content-register input {
-  border: none;
-  outline: none;
+.register-form .input-content-register input {
   flex: 1;
   font-size: 0.9rem;
+  border: none;
+  outline: none;
 }
 
-/* ====== CHECKBOX ====== */
-.terms-checkbox {
+.register-form .terms-checkbox {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 0.85rem;
 }
 
-.terms-checkbox a {
+.register-form .terms-checkbox a {
   color: #ef4444;
   text-decoration: none;
 }
 
-/* ====== BOTON ====== */
+.button-register {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.6rem;
+}
+
 .register-btn {
-  margin-top: 10px;
-  background: linear-gradient(to right, #f97316, #ef4444);
-  color: #fff;
-  border: none;
-  padding: 1rem;
+  width: fit-content;
+  padding: 1rem 8rem;
   font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(to right, #f97316, #ef4444);
+  border: none;
   border-radius: 10px;
-  cursor: pointer;
   transition: background 0.3s;
+  cursor: pointer;
 }
 
 .register-btn:hover {
   background: linear-gradient(to right, #ea580c, #dc2626);
 }
 
-/* ====== LINK DE LOGIN ====== */
 .login-link {
   margin-top: 20px;
   font-size: 0.85rem;
@@ -143,7 +157,7 @@ body {
 }
 
 @media (max-width: 1024px) {
-  .register-container {
+  .container {
     padding: 1rem 2rem;
   }
 
@@ -153,10 +167,14 @@ body {
 }
 
 @media (max-width: 768px) {
-  .register-container {
-    flex-direction: column;
+  .container {
     padding: 1rem;
+  }
+
+  .register-container {
+    min-height: 180vh;
     height: auto;
+    flex-direction: column-reverse;
   }
 
   .register-form-section,
@@ -166,20 +184,16 @@ body {
   }
 
   .register-form-section {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     padding: 2rem 1.5rem;
-    box-shadow: none;
-    border: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: visible;
   }
 
   .register-image-section {
     height: 250px;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
   }
 
   .register-image-section img {
@@ -193,6 +207,7 @@ body {
   }
 
   .register-btn {
+    width: 100%;
     font-size: 0.95rem;
     padding: 0.9rem;
   }
@@ -243,4 +258,3 @@ body {
     margin-top: 16px;
   }
 }
-

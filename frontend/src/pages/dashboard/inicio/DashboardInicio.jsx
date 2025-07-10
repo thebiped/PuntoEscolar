@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import {
   ShoppingCart,
   User,
@@ -20,6 +21,8 @@ import {
   X,
 } from "lucide-react";
 import "./DashboardInicio.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useCartCount } from "../../../components/hooks/useCartCount";
 import { catalogProducts } from "../../../components/CatalogData";
 
@@ -29,11 +32,12 @@ const DashboardInicio = () => {
   const navigate = useNavigate();
   const cartCount = useCartCount();
 
-  const handleLogout = () => {
-    localStorage.removeItem("auth");
-    alert("Sesión cerrada exitosamente");
-    navigate("/");
-  };
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
+  }, []);
 
   const products = catalogProducts.slice(0, 4);
 
@@ -52,7 +56,7 @@ const DashboardInicio = () => {
   return (
     <div className="dashboard">
       {/* Navbar */}
-      <header className="navbar">
+      <header className="navbar" data-aos="fade-down">
         <div className="logo">
           <img src="/assets/logo.png" alt="" />
         </div>
@@ -91,14 +95,21 @@ const DashboardInicio = () => {
       </header>
 
       {/* Hero */}
-      <section className="dashboard-hero">
-        <div className="hero-content">
-          <h1>¡Bienvenido, Usuario!</h1>
-          <p>
+      <section className="dashboard-hero" data-aos="fade-right">
+        <div className="hero-content" data-aos="fade-up" data-aos-delay="200">
+          <h1 data-aos="fade-up" data-aos-delay="300">
+            ¡Bienvenido, Usuario!
+          </h1>
+          <p data-aos="fade-up" data-aos-delay="400">
             Bienvenido a tu tienda escolar favorita. Encontrá todo lo que
             necesitás para el colegio con entrega rápida y segura.
           </p>
-          <button className="btn-hero" onClick={() => navigate("/catalogo")}>
+          <button
+            className="btn-hero"
+            data-aos="zoom-in"
+            data-aos-delay="500"
+            onClick={() => navigate("/catalogo")}
+          >
             Ver catálogo
             <MoveRight size={16} />
           </button>
@@ -107,9 +118,13 @@ const DashboardInicio = () => {
 
       {/* Categorías */}
       <section className="dashboard-categories">
-        <h2>Categorías Populares</h2>
+        <h2 data-aos="fade-right">Categorías Populares</h2>
         <div className="category-cards">
-          <div className="category-card snacks">
+          <div
+            className="category-card snacks"
+            data-aos="flip-left"
+            data-aos-delay="100"
+          >
             <Popcorn size={78} color="#FF945E" />
             <h3>Snacks</h3>
             <p>Chocolates, papas y golosinas para tus recreos.</p>
@@ -117,7 +132,11 @@ const DashboardInicio = () => {
               Explorar <Rocket />
             </a>
           </div>
-          <div className="category-card bebidas">
+          <div
+            className="category-card bebidas"
+            data-aos="flip-left"
+            data-aos-delay="200"
+          >
             <CupSoda size={78} color="#2F66FF" />
             <h3>Bebidas</h3>
             <p>Gaseosas y jugos para acompañar tus comidas.</p>
@@ -125,7 +144,11 @@ const DashboardInicio = () => {
               Explorar <Rocket />
             </a>
           </div>
-          <div className="category-card utiles">
+          <div
+            className="category-card utiles"
+            data-aos="flip-left"
+            data-aos-delay="300"
+          >
             <Backpack size={78} color="#4AE24D" />
             <h3>Útiles</h3>
             <p>Todo lo necesario para tu día a día en clase.</p>
@@ -133,7 +156,11 @@ const DashboardInicio = () => {
               Explorar <Rocket />
             </a>
           </div>
-          <div className="category-card otros">
+          <div
+            className="category-card otros"
+            data-aos="flip-left"
+            data-aos-delay="400"
+          >
             <Package size={78} color="#FF2F6D" />
             <h3>Otros</h3>
             <p>Mirá todo lo que tenemos para vos en un solo lugar.</p>
@@ -146,12 +173,16 @@ const DashboardInicio = () => {
 
       {/* Productos destacados */}
       <section className="dashboard-featured">
-        <h2>Productos Destacados</h2>
-        <p>Los más populares entre nuestros estudiantes</p>
+        <h2 data-aos="fade-left">Productos Destacados</h2>
+        <p data-aos="fade-left" data-aos-delay="100">
+          Los más populares entre nuestros estudiantes
+        </p>
         <div className="product-container">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <div
               className="product-card hoverable"
+              data-aos="zoom-in-up"
+              data-aos-delay={index * 150}
               onClick={() => navigate(`/catalogo?producto=${product.id}`)}
               style={{ cursor: "pointer" }}
             >
@@ -171,13 +202,21 @@ const DashboardInicio = () => {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" data-aos="fade-up">
         <div className="footer-content">
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-right"
+            data-aos-delay="100"
+          >
             <h2 className="footer-logo">El Punto Escolar</h2>
             <p>Tu tienda escolar siempre disponible</p>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
             <h4>Enlaces rápidos</h4>
             <ul className="footer-links">
               <li>
@@ -194,7 +233,11 @@ const DashboardInicio = () => {
               </li>
             </ul>
           </div>
-          <div className="footer-column">
+          <div
+            className="footer-column"
+            data-aos="fade-left"
+            data-aos-delay="300"
+          >
             <h4>Contactos</h4>
             <div className="footer-contact">
               <div className="contact-link">
