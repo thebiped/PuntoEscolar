@@ -436,19 +436,7 @@
   margin: 0;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Responsive Design */
+/*=========RESPONSIVE========== */
 @media (max-width: 768px) {
   .account-page {
     padding: 30px 16px;

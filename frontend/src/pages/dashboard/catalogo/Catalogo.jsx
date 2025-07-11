@@ -648,13 +648,13 @@ const Catalogo = () => {
                 <div className="icon">
                   <Mail size={18} />
                 </div>
-                <p>contacto@mikiosco.edu</p>
+                <p>puntoescolar@gmail.com</p>
               </div>
               <div className="contact-link">
                 <div className="icon">
                   <MapPin size={18} />
                 </div>
-                <p>no existe la calle 231</p>
+                <p>battipede y gúemes</p>
               </div>
             </div>
           </div>

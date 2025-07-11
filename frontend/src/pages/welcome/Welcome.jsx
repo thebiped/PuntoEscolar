@@ -524,7 +524,7 @@ const Welcome = () => {
                 <div className="icon">
                   <Mail size={18} />
                 </div>
-                <p>contacto@mikiosco.edu</p>
+                <p>puntoescolar@gmail.com</p>
               </div>
               <div className="contact-link">
                 <div className="icon">
