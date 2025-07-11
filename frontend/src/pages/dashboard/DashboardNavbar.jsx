@@ -17,11 +17,12 @@ const DashboardNavbar = ({ activePage }) => {
       </div>
 
       <button
-        className="menu-toggle"
+        className={`toggle ${menuOpen ? "active" : ""}`}
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Abrir menú"
       >
-        {menuOpen ? <X size={28} /> : <Menu size={28} />}
+        <span className="bars" id="bar1"></span>
+        <span className="bars" id="bar2"></span>
+        <span className="bars" id="bar3"></span>
       </button>
 
       <nav className={`nav ${menuOpen ? "open" : ""}`}>

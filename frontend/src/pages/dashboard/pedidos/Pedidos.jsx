@@ -18,6 +18,7 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 import { useCartCount } from "../../../components/hooks/useCartCount";
 import { usePedidosLogic } from "../../../components/dashboard/pedido/usePedidosLogic";
+import DashboardNavbar from "../DashboardNavbar";
 
 const Pedidos = () => {
   const navigate = useNavigate();
@@ -34,44 +35,7 @@ const Pedidos = () => {
 
   return (
     <div className="pedidos-container">
-      <header className="navbar" data-aos="fade-down">
-        <div className="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="/inicio">
-            <House />
-            Inicio
-          </a>
-          <a href="/catalogo" >
-            <Hamburger />
-            Catálogo
-          </a>
-          <a href="/carrito">
-            <ShoppingCart />
-            Carrito{" "}
-            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
-          </a>
-          <a href="/pedidos" className="active">
-            <Package />
-            Mis pedidos
-          </a>
-          <a href="/cuenta">
-            <User />
-            Hola, Usuario
-          </a>
-        </nav>
-      </header>
-
+      <DashboardNavbar activePage="pedidos" />
       <section className="pedidos-hero" data-aos="fade-up">
         <div
           className="pedidos-hero-header"

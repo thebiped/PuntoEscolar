@@ -10,91 +10,6 @@ a {
   color: inherit;
 }
 
-/* ====== NAVBAR ====== */
-.navbar {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 8%;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.navbar .logo {
-  font-weight: bold;
-  font-size: 1.2rem;
-  color: #f97316;
-  transition: transform 0.2s ease;
-}
-
-.navbar .logo:hover {
-  transform: scale(1.05);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: #374151;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.menu-toggle:hover {
-  background: #f3f4f6;
-  color: #1f2937;
-}
-
-.nav {
-  display: flex;
-  gap: 24px;
-}
-
-.nav a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #374151;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.nav a:hover {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  transform: translateY(-1px);
-}
-
-.nav .active {
-  font-weight: 600;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-}
-
-.nav .active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 2px;
-  background: #3b82f6;
-  border-radius: 1px;
-}
-
 /* Contenedor principal */
 .catalog-container {
   min-height: 100vh;
@@ -1075,33 +990,6 @@ a {
 /* ========== RESPONSIVE DESIGN ========== */
 
 @media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-  
-  .nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid #e5e7eb;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem 5%;
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav a {
-    font-size: 1.1rem;
-    padding: 15px 0;
-    border-bottom: 1px solid #f3f4f6;
-  }
 
   .catalog-header-content {
     flex-direction: column;
@@ -1293,7 +1181,6 @@ a {
   }
 }
 
-/* Utilidades adicionales */
 .text-truncate {
   text-overflow: ellipsis;
   white-space: nowrap;

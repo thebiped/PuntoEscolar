@@ -35,11 +35,11 @@
   background: linear-gradient(120deg, #f63b3b, #f96916, #f1af63, #f5428d, #f6953b 90%);
   background-size: 300% 300%;
   border-radius: 20px;
-  animation: borderGlow 3.5s linear infinite;
-  inset: 0;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  animation: borderGlow 3.5s linear infinite;
+  inset: 0;
   z-index: -1;
 }
 
@@ -49,7 +49,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem 2.5rem;
+  padding: 1rem 2.5rem;
   background-color: #f7f9fc;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
@@ -140,7 +140,7 @@
 
 .input-content-register input {
   flex: 1;
-  height: 45px;
+  height: 30px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -235,7 +235,7 @@
 .button-register {
   display: flex;
   justify-content: center;
-  margin-top: 0.6rem;
+  margin-top: 0.rem;
 }
 
 .register-btn {
@@ -281,7 +281,6 @@
 .register-btn:active {
   transform: translateY(2px);
 }
-
 
 .register-btn:hover,
 .register-btn:focus {

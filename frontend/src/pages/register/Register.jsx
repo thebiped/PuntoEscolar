@@ -203,7 +203,11 @@ const Register = () => {
                 data-aos-delay="600"
               >
                 <label class="custom-checkbox">
-                  <input type="checkbox" />
+                  <input 
+                    type="checkbox" 
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                  />
                   <span class="box"></span>
                   Acepto términos y condiciones
                 </label>

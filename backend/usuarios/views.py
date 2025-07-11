@@ -16,10 +16,12 @@ class RegistroView(generics.CreateAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         token, created = Token.objects.get_or_create(user=user)
-        return Response({
+        response = Response({
             "user": UsuarioSerializer(user).data,
             "token": token.key
         }, status=status.HTTP_201_CREATED)
+        response['Location'] = '/api/usuarios/login/'  # Agrega header Location
+        return response
 
 class LoginView(APIView):
     permission_classes = [AllowAny]

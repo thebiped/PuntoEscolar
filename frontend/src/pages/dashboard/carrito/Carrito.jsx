@@ -54,7 +54,7 @@ const Carrito = () => {
 
   return (
     <div className="cart-page">
-      <DashboardNavbar activePage="catalogo" />
+      <DashboardNavbar activePage="carrito" />
       {/* HERO */}
       <section className="cart-hero" data-aos="fade-down">
         <div className="cart-hero-text" data-aos="fade-up" data-aos-delay="150">
