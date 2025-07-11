@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useCartCount } from "../../../components/hooks/useCartCount"; // ajustar ruta
 import { useCarritoLogic } from "../../../components/dashboard/carrito/useCarritoLogic";
+import DashboardNavbar from "../DashboardNavbar";
 
 const Carrito = () => {
   const {
@@ -53,43 +54,7 @@ const Carrito = () => {
 
   return (
     <div className="cart-page">
-      <header className="navbar" data-aos="fade-down">
-        <div className="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="/inicio">
-            <House />
-            Inicio
-          </a>
-          <a href="/catalogo" >
-            <Hamburger />
-            Catálogo
-          </a>
-          <a href="/carrito" className="active">
-            <ShoppingCart />
-            Carrito{" "}
-            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
-          </a>
-          <a href="/pedidos">
-            <Package />
-            Mis pedidos
-          </a>
-          <a href="/cuenta">
-            <User />
-            Hola, Usuario
-          </a>
-        </nav>
-      </header>
+      <DashboardNavbar activePage="catalogo" />
       {/* HERO */}
       <section className="cart-hero" data-aos="fade-down">
         <div className="cart-hero-text" data-aos="fade-up" data-aos-delay="150">

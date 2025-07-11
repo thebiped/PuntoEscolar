@@ -23,6 +23,7 @@ import {
   Rocket,
 } from "lucide-react";
 import "./Welcome.css";
+import SocialModal from "../../components/Welcome/SocialModal";
 
 const Welcome = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,6 +35,20 @@ const Welcome = () => {
       once: true,
     });
   }, []);
+
+  const [modalData, setModalData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (data) => {
+    setModalData(data);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
   return (
     <div className="welcome-page">
       {/* NAVBAR */}
@@ -43,8 +58,13 @@ const Welcome = () => {
         </div>
 
         {/* Botón hamburguesa (solo en móvil) */}
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-          <Menu size={28} />
+        <button
+          className={`toggle ${menuOpen ? "active" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          <span className="bars" id="bar1"></span>
+          <span className="bars" id="bar2"></span>
+          <span className="bars" id="bar3"></span>
         </button>
 
         {/* Menú de navegación */}
@@ -137,7 +157,6 @@ const Welcome = () => {
         </div>
       </section>
 
-
       {/* BENEFICIOS */}
       <section className="benefits">
         <div className="benefit-header">
@@ -212,11 +231,41 @@ const Welcome = () => {
               <div className="header">
                 <h4>María González</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100"  />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200"  />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300"  />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400"  />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500"  />
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                  />
                 </p>
               </div>
               <p>
@@ -230,11 +279,41 @@ const Welcome = () => {
               <div className="header">
                 <h4>Carlos Rodríguez</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500" />
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                  />
                 </p>
               </div>
               <p>
@@ -248,11 +327,41 @@ const Welcome = () => {
               <div className="header">
                 <h4>Ana Martínez</h4>
                 <p>
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="100" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="200" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="300" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="400" />{" "}
-                  <Star color="#B20003" fill="#FF2FEE" size={16} data-aos="fade-up" data-aos-delay="500" />
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                  />{" "}
+                  <Star
+                    color="#B20003"
+                    fill="#FF2FEE"
+                    size={16}
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                  />
                 </p>
               </div>
               <p>
@@ -278,6 +387,15 @@ const Welcome = () => {
             className="social-card instagram"
             data-aos="zoom-in-up"
             data-aos-delay="150"
+            onClick={() =>
+              openModal({
+                title: "Instagram",
+                description: "Seguinos para ver productos y ofertas",
+                link: "https://instagram.com/elpunto_escolar",
+                icon: <Instagram size={28} />,
+                color: "#ff2f6d",
+              })
+            }
           >
             <div className="wave"></div>
             <div className="wave"></div>
@@ -287,12 +405,10 @@ const Welcome = () => {
               <div className="icon">
                 <Instagram size={36} color="#fff" />
               </div>
-              <div className="content">
-                <h3>Instagram</h3>
-                <div className="description">
-                  <h5>@elpunto_escolar</h5>
-                  <p>Seguinos para ver productos y ofertas</p>
-                </div>
+              <h3>Instagram</h3>
+              <div className="description">
+                <h5>@elpunto_escolar</h5>
+                <p>Seguinos para ver productos y ofertas</p>
               </div>
             </div>
           </div>
@@ -300,8 +416,16 @@ const Welcome = () => {
             className="social-card facebook"
             data-aos="zoom-in-up"
             data-aos-delay="150"
+            onClick={() =>
+              openModal({
+                title: "Facebook",
+                description: "Noticias y actualizaciones",
+                link: "https://facebook.com",
+                icon: <Facebook size={28} />,
+                color: "#2f66ff",
+              })
+            }
           >
-
             <div className="wave"></div>
             <div className="wave"></div>
             <div className="wave"></div>
@@ -310,12 +434,10 @@ const Welcome = () => {
               <div className="icon">
                 <Facebook size={36} color="#fff" />
               </div>
-              <div className="content">
-                <h3>Facebook</h3>
-                <div className="description">
-                  <h5>Mi Kiosco Escolar</h5>
-                  <p>Noticias y actualizaciones</p>
-                </div>
+              <h3>Facebook</h3>
+              <div className="description">
+                <h5>Mi Kiosco Escolar</h5>
+                <p>Noticias y actualizaciones</p>
               </div>
             </div>
           </div>
@@ -323,25 +445,37 @@ const Welcome = () => {
             className="social-card whatsapp"
             data-aos="zoom-in-up"
             data-aos-delay="150"
+            onClick={() =>
+              openModal({
+                title: "WhatsApp",
+                description: "Consultas rápidas",
+                link: "https://wa.me/5491155550123",
+                icon: <Phone size={28} />,
+                color: "#2fff8c",
+              })
+            }
           >
             <div className="wave"></div>
             <div className="wave"></div>
             <div className="wave"></div>
-            
+
             <div className="social-card-content">
               <div className="icon">
                 <Phone size={36} color="#fff" />
               </div>
-              <div className="content">
-                <h3>WhatsApp</h3>
-                <div className="description">
-                  <h5>11-5555-0123</h5>
-                  <p>Consultas rápidas</p>
-                </div>
+              <h3>WhatsApp</h3>
+              <div className="description">
+                <h5>11-5555-0123</h5>
+                <p>Consultas rápidas</p>
               </div>
             </div>
           </div>
         </div>
+        <SocialModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          data={modalData}
+        />
       </section>
 
       {/* FOOTER */}

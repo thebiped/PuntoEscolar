@@ -23,7 +23,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCatalogLogic } from "../../../components/dashboard/catalogo/useCatalogLogic";
 import { useCartCount } from "../../../components/hooks/useCartCount";
+import DashboardNavbar from "../DashboardNavbar";
 import "./Catalogo.css";
+
 
 const Catalogo = () => {
   const {
@@ -112,43 +114,7 @@ const Catalogo = () => {
   return (
     <div className="catalog-container">
       {/* Header */}
-      <header className="navbar" data-aos="fade-down">
-        <div className="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="/inicio">
-            <House />
-            Inicio
-          </a>
-          <a href="/catalogo" className="active">
-            <Hamburger />
-            Catálogo
-          </a>
-          <a href="/carrito">
-            <ShoppingCart />
-            Carrito{" "}
-            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
-          </a>
-          <a href="/pedidos">
-            <Package />
-            Mis pedidos
-          </a>
-          <a href="/cuenta">
-            <User />
-            Hola, Usuario
-          </a>
-        </nav>
-      </header>
+      <DashboardNavbar activePage="catalogo" />
 
       <div className="catalog-header" data-aos="fade-right">
         <div

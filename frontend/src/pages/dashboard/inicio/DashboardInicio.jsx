@@ -1,24 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+import DashboardNavbar from "../DashboardNavbar";
 
 import {
-  ShoppingCart,
-  User,
-  PackageOpen,
   MoveRight,
   BookOpen,
   Rocket,
   Mail,
   MapPin,
-  House,
   Hamburger,
   Package,
   Backpack,
   CupSoda,
   Popcorn,
   Plus,
-  Menu,
-  X,
 } from "lucide-react";
 import "./DashboardInicio.css";
 import AOS from "aos";
@@ -28,7 +24,7 @@ import { catalogProducts } from "../../../components/CatalogData";
 
 const DashboardInicio = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const cartCount = useCartCount();
 
@@ -56,49 +52,13 @@ const DashboardInicio = () => {
   return (
     <div className="dashboard">
       {/* Navbar */}
-      <header className="navbar" data-aos="fade-down">
-        <div className="logo">
-          <img src="/assets/logo.png" alt="" />
-        </div>
-
-        <button
-          className="menu-toggle"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Abrir menú"
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-
-        <nav className={`nav ${menuOpen ? "open" : ""}`}>
-          <a href="/inicio" className="active">
-            <House />
-            Inicio
-          </a>
-          <a href="/catalogo">
-            <Hamburger />
-            Catálogo
-          </a>
-          <a href="/carrito">
-            <ShoppingCart />
-            Carrito{" "}
-            {cartCount > 0 && (cartCount === 99 ? "+99" : `+${cartCount}`)}
-          </a>
-          <a href="/pedidos">
-            <Package />
-            Mis pedidos
-          </a>
-          <a href="/cuenta">
-            <User />
-            Hola, Usuario
-          </a>
-        </nav>
-      </header>
+      <DashboardNavbar activePage="inicio" />
 
       {/* Hero */}
       <section className="dashboard-hero" data-aos="fade-right">
         <div className="hero-content" data-aos="fade-up" data-aos-delay="200">
           <h1 data-aos="fade-up" data-aos-delay="300">
-            ¡Bienvenido, Usuario!
+            ¡Bienvenido, {user?.nombre || "Usuario"}!
           </h1>
           <p data-aos="fade-up" data-aos-delay="400">
             Bienvenido a tu tienda escolar favorita. Encontrá todo lo que
