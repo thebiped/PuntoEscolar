@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import "./Register.css";
 
 const Register = () => {
+  
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",

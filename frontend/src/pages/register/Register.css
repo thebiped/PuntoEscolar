@@ -99,12 +99,26 @@
   flex-direction: column;
 }
 
+.register-form .input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.register-form .input-container label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #333;
+}
+
 .input-content-register {
   position: relative;
   display: flex;
   align-items: center;
   gap: 5px;
-  padding: 0 1rem;
+  padding: 0.6rem 1rem;
   background-color: #fff;
   border: 2px solid #ef4444;
   border-radius: 8px;
@@ -140,7 +154,7 @@
 
 .input-content-register input {
   flex: 1;
-  height: 30px;
+  height: 20px;
   border: none;
   outline: none;
   background-color: transparent;
@@ -218,13 +232,9 @@
   transition: transform 0.3s ease;
 }
 
-.custom-checkbox input:checked + .box {
-  border-color: #ef4444;
-}
+.custom-checkbox input:checked + .box {border-color: #ef4444}
 
-.custom-checkbox input:checked + .box::before {
-  transform: scaleX(1);
-}
+.custom-checkbox input:checked + .box::before {transform: scaleX(1)}
 
 .custom-checkbox input:checked + .box::after {
   border-color: #ef4444;
@@ -235,7 +245,7 @@
 .button-register {
   display: flex;
   justify-content: center;
-  margin-top: 0.rem;
+  margin-top: 0.8rem;
 }
 
 .register-btn {
@@ -259,18 +269,11 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%,rgba(255, 255, 255, 0.2) 50%,rgba(255, 255, 255, 0) 100%);
   transition: left 0.7s ease;
 }
 
-.register-btn:hover::before {
-  left: 100%;
-}
+.register-btn:hover::before {left: 100%;}
 
 .register-btn:hover {
   color: #fafafa;
@@ -278,14 +281,12 @@
   box-shadow: 0 2px 15px rgba(184, 37, 0, 0.6);
 }
 
-.register-btn:active {
-  transform: translateY(2px);
-}
+.register-btn:active {transform: translateY(2px);}
 
 .register-btn:hover,
 .register-btn:focus {
-  border-color: #f87c6c;
   background-color: #ffffff;
+  border-color: #f87c6c;
   box-shadow: 0 0 2px 5px rgba(248, 108, 108, 0.3);
 }
 
@@ -297,13 +298,11 @@
 
 .login-link a {
   position: relative;
-  color: #ef4444;
   font-weight: 500;
+  color: #ef4444;
   text-decoration: none;
 }
-.login-link a:hover {
-  color: #f6573b;
-}
+.login-link a:hover {color: #f6573b;}
 
 .login-link a::after {
   content: "";
@@ -321,26 +320,6 @@
 .login-link a:hover::after {
   transform: scaleX(1);
   transform-origin: left;
-}
-
-/*=========ANIMATIONS=========*/
-
-@keyframes pop {
-  0% {
-    transform: rotate(45deg) scale(0.2) translateY(4px);
-  }
-  60% {
-    transform: rotate(45deg) scale(1.2) translateY(-2px);
-  }
-  100% {
-    transform: rotate(45deg) scale(1) translateY(0);
-  }
-}
-
-@keyframes borderGlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /*=========RESPONSIVE==========*/
@@ -361,7 +340,7 @@
   }
 
   .register-container {
-    min-height: 180vh;
+    min-height: 90vh;
     height: auto;
     flex-direction: column-reverse;
   }
@@ -412,7 +391,7 @@
   }
 
   .logo {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .title {
@@ -420,30 +399,31 @@
   }
 
   .input-container label {
-    font-size: 0.85rem;
+    font-size: 0.6rem;
   }
 
   .input-content-register {
-    padding: 0.75rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.1rem 1rem;
+    font-size: 0.6rem;
   }
 
   .input-content-register input {
     font-size: 0.85rem;
   }
 
-  .terms-checkbox {
-    font-size: 0.75rem;
-    gap: 6px;
+  .custom-checkbox input:checked + .box::after
+  .terms-checkbox .box{
+    width: 5px;
+    height: 8px;
   }
 
   .register-btn {
-    font-size: 0.9rem;
-    padding: 0.8rem;
+    font-size: 0.6rem;
+    padding: 0.6rem;
   }
 
   .login-link {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
     margin-top: 16px;
   }
 }

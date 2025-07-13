@@ -33,7 +33,12 @@ const Login = () => {
 
     try {
       const data = await loginService(email, password);
-      login(data.user, data.token);
+
+      localStorage.setItem("access", data.access);
+      localStorage.setItem("refresh", data.refresh);
+
+      login(data.user, data.access, data.refresh);
+
       navigate("/inicio");
     } catch (error) {
       setError(error.detail || "Error al iniciar sesión");
@@ -77,6 +82,7 @@ const Login = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    autoComplete="username"
                   />
                 </div>
               </div>
@@ -95,6 +101,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    autoComplete="current-password"
                   />
                 </div>
               </div>
@@ -104,9 +111,9 @@ const Login = () => {
                 data-aos="fade-up"
                 data-aos-delay="600"
               >
-                <label class="custom-checkbox">
+                <label className="custom-checkbox">
                   <input type="checkbox" />
-                  <span class="box"></span>
+                  <span className="box"></span>
                   Recordarme
                 </label>
                 <a href="#">¿Olvidaste tu contraseña?</a>

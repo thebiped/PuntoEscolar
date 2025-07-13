@@ -22,9 +22,9 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { useCartCount } from "../../../components/hooks/useCartCount"; // ajustar ruta
+import { useCartCount } from "../../../components/hooks/useCartCount";
 import { useCarritoLogic } from "../../../components/dashboard/carrito/useCarritoLogic";
-import DashboardNavbar from "../DashboardNavbar";
+import DashboardNavbar from "../../../components/navbar/DashboardNavbar";
 
 const Carrito = () => {
   const {

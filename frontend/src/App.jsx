@@ -9,16 +9,25 @@ import { AuthProvider } from "./context/AuthContext";
 import Carrito from "./pages/dashboard/carrito/Carrito";
 import Pedidos from "./pages/dashboard/pedidos/Pedidos";
 import Account from "./pages/dashboard/account/Account";
+import AdminPanel from "./pages/dashboard/admin/AdminPanel";
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Rutas públicas */}
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Register />} />
+          <Route
+            path="/admin-panel"
+            element={
+              <PrivateRoute requiredRole="admin">
+                {" "}
+                <AdminPanel />
+              </PrivateRoute>
+            }
+          />
 
           {/* Rutas privadas */}
           <Route
@@ -62,7 +71,6 @@ function App() {
               </PrivateRoute>
             }
           />
-          
         </Routes>
       </Router>
     </AuthProvider>
@@ -70,4 +78,3 @@ function App() {
 }
 
 export default App;
-

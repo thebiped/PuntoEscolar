@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useSearchParams, useLocation } from "react-router-dom";
 import {
   Search,
@@ -8,24 +8,15 @@ import {
   X,
   Zap,
   Star,
-  User,
   Mail,
   MapPin,
-  Package,
-  Popcorn,
-  CupSoda,
-  Backpack,
-  House,
-  Hamburger,
-  Menu,
 } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCatalogLogic } from "../../../components/dashboard/catalogo/useCatalogLogic";
 import { useCartCount } from "../../../components/hooks/useCartCount";
-import DashboardNavbar from "../DashboardNavbar";
+import DashboardNavbar from "../../../components/navbar/DashboardNavbar";
 import "./Catalogo.css";
-
 
 const Catalogo = () => {
   const {
@@ -57,6 +48,7 @@ const Catalogo = () => {
     resetAllFilters,
     setShowSearchSuggestions,
   } = useCatalogLogic();
+
   const hasResults =
     popularProducts.length > 0 ||
     newProducts.length > 0 ||
@@ -88,11 +80,10 @@ const Catalogo = () => {
   const cartCount = useCartCount();
 
   const filteredByProductoId = productoId
-    ? allProducts.filter((p) => p.id === productoId)
+    ? allProducts.filter((p) => p.id.toString() === productoId.toString())
     : null;
 
   const [menuOpen, setMenuOpen] = useState(false);
-
   const [modalVisible, setModalVisible] = useState(false);
   const [pendingProductId, setPendingProductId] = useState(null);
 
@@ -111,6 +102,7 @@ const Catalogo = () => {
     setModalVisible(false);
     setPendingProductId(null);
   };
+
   return (
     <div className="catalog-container">
       {/* Header */}
@@ -138,7 +130,7 @@ const Catalogo = () => {
 
       {/* Contenido principal */}
       <main className="catalog-content">
-        {/* Buscador mejorado con sugerencias */}
+        {/* Buscador */}
         <form
           onSubmit={handleSearchSubmit}
           className="search-form"
@@ -172,7 +164,7 @@ const Catalogo = () => {
               </button>
             )}
 
-            {/* Sugerencias de búsqueda */}
+            {/* Sugerencias */}
             {showSearchSuggestions &&
               (searchSuggestions.length > 0 || searchHistory.length > 0) && (
                 <div className="search-suggestions">
@@ -219,7 +211,7 @@ const Catalogo = () => {
           </div>
         </form>
 
-        {/* Indicador de búsqueda activa mejorado */}
+        {/* Indicador de búsqueda activa */}
         {(searchTerm || selectedCategory !== "todos") && (
           <div className="search-indicator-enhanced">
             <div className="search-status">
@@ -244,7 +236,7 @@ const Catalogo = () => {
           </div>
         )}
 
-        {/* Categorías funcionales mejoradas */}
+        {/* Categorías funcionales */}
         <div className="categories-container-enhanced">
           {categories.map((category) => {
             const categoryProducts =
@@ -281,7 +273,7 @@ const Catalogo = () => {
           })}
         </div>
 
-        {/* Mensaje de no resultados mejorado */}
+        {/* Mensaje de no resultados */}
         {!hasResults && (searchTerm || selectedCategory !== "todos") && (
           <div
             className="no-results-enhanced"
@@ -353,7 +345,11 @@ const Catalogo = () => {
                       <div className="popular-image-container">
                         <div className="popular-image-bg">
                           <img
-                            src={product.image}
+                            src={
+                              product.image
+                                ? product.image
+                                : "/assets/placeholder.png"
+                            }
                             alt={product.name}
                             className="popular-image"
                           />
@@ -365,14 +361,18 @@ const Catalogo = () => {
                       </div>
 
                       <div className="popular-info">
-                        <span className="category-tag">{product.category}</span>
+                        <span className="category-tag">
+                          {product.category || "Sin categoría"}
+                        </span>
                         <h3 className="product-name">{product.name}</h3>
                         <p className="product-description">
                           {product.description}
                         </p>
                         <div className="product-footer">
                           <span className="product-price">
-                            ${product.price.toFixed(2)}
+                            {product.price !== undefined
+                              ? product.price.toFixed(2)
+                              : "Sin precio"}
                           </span>
                           <button
                             onClick={() =>
@@ -393,7 +393,6 @@ const Catalogo = () => {
               )}
             </div>
 
-            {/* Botón para mostrar más en móvil */}
             {popularProducts.length > 2 && !showAllPopular && (
               <div className="show-more-mobile">
                 <button
@@ -446,7 +445,9 @@ const Catalogo = () => {
                       <h3>{product.name}</h3>
                       <p>{product.description}</p>
                       <div className="featured-price">
-                        ${product.price.toFixed(2)}
+                        {product.price !== undefined
+                          ? product.price.toFixed(2)
+                          : "Sin precio"}
                       </div>
                       <button
                         onClick={() => handleAddToCartWithConfirm(product.id)}
@@ -462,7 +463,11 @@ const Catalogo = () => {
                     <div className="featured-image-container">
                       <div className="featured-image-bg">
                         <img
-                          src={product.image}
+                          src={
+                            product.image
+                              ? product.image
+                              : "/assets/placeholder.png"
+                          }
                           alt={product.name}
                           className="featured-image"
                         />
@@ -501,13 +506,19 @@ const Catalogo = () => {
                   <div key={product.id} className="product-card">
                     <div className="product-image-container">
                       <img
-                        src={product.image}
+                        src={
+                          product.image
+                            ? product.image
+                            : "/assets/placeholder.png"
+                        }
                         alt={product.name}
                         className="product-image-full"
                       />
                     </div>
                     <div className="product-card-body">
-                      <span className="category-tag">{product.category}</span>
+                      <span className="category-tag">
+                        {product.category || "Sin categoría"}
+                      </span>
                       <h3 className="product-name">{product.name}</h3>
                       <p className="product-description">
                         {product.description}
@@ -526,34 +537,44 @@ const Catalogo = () => {
                       data-aos="fade-up"
                       data-aos-delay={index * 50}
                     >
-                      <div className="product-image-container">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="product-image"
-                        />
-                      </div>
-                      <div className="product-card-body">
-                        <span className="category-tag">{product.category}</span>
-                        <h3 className="product-name">{product.name}</h3>
-                        <p className="product-description">
-                          {product.description}
-                        </p>
-                        <div className="product-card-footer">
-                          <span className="product-price">
-                            ${product.price.toFixed(2)}
-                          </span>
-                          <button
-                            onClick={() =>
-                              handleAddToCartWithConfirm(product.id)
+                      <div className="product-card-content">
+                        <div className="product-image-container">
+                          <img
+                            src={
+                              product.image
+                                ? product.image
+                                : "/assets/placeholder.png"
                             }
-                            className={`add-button ${
-                              addedItems.has(product.id) ? "added" : ""
-                            }`}
-                            aria-label="Agregar al carrito"
-                          >
-                            <Plus size={20} />
-                          </button>
+                            alt={product.name}
+                            className="product-image"
+                          />
+                        </div>
+                        <div className="product-card-body">
+                          <span className="category-tag">
+                            {product.category || "Sin categoría"}
+                          </span>
+                          <h3 className="product-name">{product.name}</h3>
+                          <p className="product-description">
+                            {product.description}
+                          </p>
+                          <div className="product-card-footer">
+                            <span className="product-price">
+                              {product.price !== undefined
+                                ? product.price.toFixed(2)
+                                : "Sin precio"}
+                            </span>
+                            <button
+                              onClick={() =>
+                                handleAddToCartWithConfirm(product.id)
+                              }
+                              className={`add-button ${
+                                addedItems.has(product.id) ? "added" : ""
+                              }`}
+                              aria-label="Agregar al carrito"
+                            >
+                              <Plus size={20} />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -562,7 +583,6 @@ const Catalogo = () => {
               </div>
             )}
 
-            {/* Botón para mostrar más en móvil */}
             {allProducts.length > 6 && !showAllProducts && (
               <div className="show-more-mobile">
                 <button
@@ -576,7 +596,7 @@ const Catalogo = () => {
           </section>
         )}
 
-        {/* Resumen de resultados mejorado */}
+        {/* Resumen de resultados */}
         {hasResults && (searchTerm || selectedCategory !== "todos") && (
           <div className="results-summary-enhanced">
             <div className="summary-content">
@@ -648,13 +668,13 @@ const Catalogo = () => {
                 <div className="icon">
                   <Mail size={18} />
                 </div>
-                <p>puntoescolar@gmail.com</p>
+                <p>contacto@mikiosco.edu</p>
               </div>
               <div className="contact-link">
                 <div className="icon">
                   <MapPin size={18} />
                 </div>
-                <p>battipede y gúemes</p>
+                <p>no existe la calle 231</p>
               </div>
             </div>
           </div>
@@ -664,6 +684,8 @@ const Catalogo = () => {
           © 2025 Mi Kiosco Escolar. Todos los derechos reservados.
         </div>
       </footer>
+
+      {/* Modal de confirmación */}
       {modalVisible && (
         <div className="modal-overlay">
           <div className="modal-content" data-aos="zoom-in">

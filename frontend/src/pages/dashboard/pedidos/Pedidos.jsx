@@ -18,7 +18,7 @@ import "aos/dist/aos.css";
 import { useNavigate } from "react-router-dom";
 import { useCartCount } from "../../../components/hooks/useCartCount";
 import { usePedidosLogic } from "../../../components/dashboard/pedido/usePedidosLogic";
-import DashboardNavbar from "../DashboardNavbar";
+import DashboardNavbar from "../../../components/navbar/DashboardNavbar";
 
 const Pedidos = () => {
   const navigate = useNavigate();

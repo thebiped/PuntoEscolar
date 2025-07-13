@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
-import DashboardNavbar from "../DashboardNavbar";
+import DashboardNavbar from "../../../components/navbar/DashboardNavbar";
 
 import {
   MoveRight,
@@ -46,7 +46,7 @@ const DashboardInicio = () => {
       cart.push({ id: product.id, quantity: 1 });
     }
     localStorage.setItem("cart", JSON.stringify(cart));
-    window.location.reload(); // actualiza contador de carrito
+    window.location.reload();
   };
 
   return (
@@ -85,7 +85,9 @@ const DashboardInicio = () => {
             data-aos="flip-left"
             data-aos-delay="100"
           >
-            <Popcorn size={78} color="#FF945E" />
+            <div className="category-card-icon snacks">
+              <img src="/assets/popcorn.png" alt="" />
+            </div>
             <h3>Snacks</h3>
             <p>Chocolates, papas y golosinas para tus recreos.</p>
             <a href={`/catalogo?categoria=Snacks`}>
@@ -97,7 +99,9 @@ const DashboardInicio = () => {
             data-aos="flip-left"
             data-aos-delay="200"
           >
-            <CupSoda size={78} color="#2F66FF" />
+            <div className="category-card-icon drink">
+              <img src="/assets/drink.png" alt="" />
+            </div>
             <h3>Bebidas</h3>
             <p>Gaseosas y jugos para acompañar tus comidas.</p>
             <a href={`/catalogo?categoria=Bebidas`}>
@@ -109,7 +113,9 @@ const DashboardInicio = () => {
             data-aos="flip-left"
             data-aos-delay="300"
           >
-            <Backpack size={78} color="#4AE24D" />
+            <div className="category-card-icon util">
+              <img src="/assets/backpack.png" alt="" />
+            </div>
             <h3>Útiles</h3>
             <p>Todo lo necesario para tu día a día en clase.</p>
             <a href={`/catalogo?categoria=Útiles`}>
@@ -117,11 +123,13 @@ const DashboardInicio = () => {
             </a>
           </div>
           <div
-            className="category-card otros"
+            className="category-card other"
             data-aos="flip-left"
             data-aos-delay="400"
           >
-            <Package size={78} color="#FF2F6D" />
+            <div className="category-card-icon other">
+              <img src="/assets/box.png" alt="" />
+            </div>
             <h3>Otros</h3>
             <p>Mirá todo lo que tenemos para vos en un solo lugar.</p>
             <a href={`/catalogo?categoria=Otros`}>
@@ -140,21 +148,37 @@ const DashboardInicio = () => {
         <div className="product-container">
           {products.map((product, index) => (
             <div
-              className="product-card hoverable"
+              key={`product-${product.id}`}
+              className="card"
               data-aos="zoom-in-up"
               data-aos-delay={index * 150}
               onClick={() => navigate(`/catalogo?producto=${product.id}`)}
               style={{ cursor: "pointer" }}
             >
-              <div className="icon">
-                <img src={product.image} alt={product.name} />
+              <div className="container-image">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="image-circle"
+                />
               </div>
-              <div className="product-card-body">
-                <span className="category-tag">{product.category}</span>
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-description line-clamp-2">
-                  {product.description}
-                </p>
+
+              <div className="content">
+                <div className="detail">
+                  <span>{product.name}</span>
+                  <p className="product-price">${product.price}</p>
+                  <button>Ver</button>
+                </div>
+
+                <div className="product-image">
+                  <div className="box-image">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="img-product"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           ))}

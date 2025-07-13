@@ -95,6 +95,36 @@ body {
   gap: 10px;
 }
 
+.login-form .input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.login-form .input-container label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.login-form .input-content-login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.2rem 14px;
+  background-color: #fff;
+  border: 1.5px solid #ef4444;
+  border-radius: 8px;
+}
+
+.login-form .input-content-login input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+}
+
 .input-content-login {
   position: relative;
   display: flex;
@@ -160,35 +190,6 @@ body {
   box-shadow: 0 0 2px 5px rgba(248, 108, 108, 0.3);
 }
 
-.login-form .input-container {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.login-form .input-container label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9rem;
-  color: #333;
-}
-
-.login-form .input-content-login {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background-color: #fff;
-  border: 1.5px solid #ef4444;
-  border-radius: 8px;
-}
-
-.login-form .input-content-login input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-size: 0.9rem;
-}
 
 .login-options {
   display: flex;
@@ -238,8 +239,8 @@ body {
   border: none;
   border-radius: 10px;
   transition: background 0.3s;
-  cursor: pointer;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .login-btn::before {

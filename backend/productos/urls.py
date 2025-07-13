@@ -1,15 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.http import HttpResponse
-
-# Vista simple para la ruta raíz
-def index(request):
-    return HttpResponse("API de Punto Escolar. Accede a /api/productos/, /api/pedidos/ o /api/usuarios/ para usar la API.")
+from django.urls import path
+from .views import (
+    listar_productos,
+    crear_producto,
+    editar_producto,
+    eliminar_producto,
+    CategoriaListView
+)
 
 urlpatterns = [
-    path('', index, name='index'),  # Ruta raíz
-    path('admin/', admin.site.urls),
-    path('api/usuarios/', include('usuarios.urls')),
-    path('api/productos/', include('productos.urls')),
-    path('api/pedidos/', include('pedidos.urls')),
+    path("productos/", listar_productos, name="listar_productos"),
+    path("productos/crear/", crear_producto, name="crear_producto"),
+    path("productos/<int:id>/editar/", editar_producto, name="editar_producto"),
+    path("productos/<int:id>/eliminar/", eliminar_producto, name="eliminar_producto"),
+    path("productos/categorias/", CategoriaListView.as_view(), name="listar_categorias"),
 ]

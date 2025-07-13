@@ -283,6 +283,17 @@
   animation: draw-line infinite ease-out forwards;
 }
 /*==========ANIMACIONES=========*/
+@keyframes pop {
+  0% {transform: rotate(45deg) scale(0.2) translateY(4px)}
+  60% {transform: rotate(45deg) scale(1.2) translateY(-2px)}
+  100% {transform: rotate(45deg) scale(1) translateY(0)}
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
 @keyframes fadeInUp {
   0% {opacity: 0;transform: translateY(30px);}
@@ -316,6 +327,11 @@
     -webkit-transform: translateX(8px) translateY(-8px);
     transform: translateX(8px) translateY(-8px);
   }
+}
+
+@keyframes animate {
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
 }
 
 @keyframes text-shadow-pop-bl {
